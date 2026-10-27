@@ -148,7 +148,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 </style>
 </head>
 <body>
-<div class="demo-banner">Concept demo — fictional people and figures. Not a live system; nothing you enter is saved or sent.</div>
+<div class="demo-banner">Concept demo — fictional people and figures. Not a live system; nothing you enter is saved. Have thoughts? Use the Feedback tab.</div>
 <header>
   <div class="topbar">
     <div class="brand">FA Demo <small>TALENT EXCHANGE</small></div>
@@ -160,6 +160,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     <button class="tab" data-view="supervisor">Supervisor Approvals <span class="count" id="pendCount">2</span></button>
     <button class="tab" data-view="ops">Find Talent<span class="lock">🔒 SSO</span></button>
     <button class="tab" data-view="dash">Program Dashboard</button>
+    <button class="tab" data-view="feedback">Feedback</button>
   </div></nav>
 </header>
 
@@ -419,19 +420,57 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     </div>
   </div>
 </section>
+
+<!-- FEEDBACK -->
+<section class="view" id="feedback">
+  <h1>Share your feedback</h1>
+  <p class="sub">Tell us what would make Talent Exchange useful for your teams, and what worries you. Your note goes to the project team.</p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="row">
+        <div><label>Your name (optional)</label><input type="text" id="fbName" placeholder="First and last name"></div>
+        <div><label>Your area</label><select id="fbArea"><option>HR</option><option>Operations</option><option>Finance</option><option>Technology</option><option>Executive leadership</option><option>Other</option></select></div>
+      </div>
+      <label>How useful would this be for your organization?</label>
+      <div class="chips" id="fbRate"></div>
+      <label>What would make it more useful?</label>
+      <textarea id="fbIdeas" rows="3" placeholder="Features, data, workflow, pilot ideas…"></textarea>
+      <label>Concerns or risks we should address?</label>
+      <textarea id="fbRisks" rows="3" placeholder="Policy, pay transparency, licensing, manager adoption…"></textarea>
+      <label>Would your team join a 90-day pilot?</label>
+      <select id="fbPilot"><option>Yes</option><option>Maybe — tell me more</option><option>Not right now</option></select>
+      <div class="actions">
+        <button class="btn ghost" onclick="copyFeedback()">Copy text</button>
+        <button class="btn" onclick="sendFeedback()">Open in my email app</button>
+      </div>
+      <p class="note">This opens a pre-filled email in your own mail app; nothing is stored on this site. If your device has no mail app set up, use “Copy text” and paste it into an email to the addresses shown.</p>
+    </div>
+    <div class="card">
+      <h2>Send to</h2>
+      <p class="mini" style="margin:0 0 6px"><span class="fbAddr" data-u="brian" data-d="titlevest.com"></span></p>
+      <p class="mini" style="margin:0 0 14px"><span class="fbAddr" data-u="rlsimmons" data-d="firstam.com"></span></p>
+      <h2>Things to try first</h2>
+      <ul class="mini" style="padding-left:18px;margin:0">
+        <li>Find Talent → choose a team supervisor (blocked), then an area manager.</li>
+        <li>Filter for Commercial experience, Ignite, and Central time.</li>
+        <li>Open a candidate and request a 3-month seasonal surge.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 </main>
 <footer>Talent Exchange · Concept demonstration · Sample people and figures</footer>
 <div class="toast" id="toast"></div>
 
 <script>
-const SYS=["FAST","Endpoint","MRS","Simplifile","AgentNet","Title exam workstation","Closing/settlement platform","Excel / reporting","Salesforce"];
+const SYS=["FAST","Ignite","ClarityFirst","Endpoint","MRS","Simplifile","AgentNet","Title exam workstation","Closing/settlement platform","Excel / reporting","Salesforce"];
 const LIC=["NY Title Insurance Agent","Notary Public","Escrow officer","None"];
 const ENG=[["PTO coverage","1–3 wks"],["Seasonal surge","1–3 mos"],["Customer / portfolio / project surge","3–6 mos"],["Ongoing part-time","6+ mos"]];
 const TYPES=ENG.map(e=>e[0]+" ("+e[1]+")");
 const engLabel=n=>{const e=ENG.find(x=>x[0]===n);return e?e[0]+" ("+e[1]+")":n};
 const wkLabel=w=>w<=3?"up to 3 weeks":w<=13?"up to 3 months":w<=26?"up to 6 months":"6+ months";
 const state={
-  sys:new Set(["FAST","Title exam workstation","Excel / reporting"]),
+  sys:new Set(["FAST","Ignite","Title exam workstation","Excel / reporting"]),
   lic:new Set(["NY Title Insurance Agent","Notary Public"]),
   types:new Set([TYPES[0],TYPES[1]]),
   styles:new Set(["Heads-down / independent","Comfortable training others"]),
@@ -487,6 +526,7 @@ const people=[
 const EXP={"g0": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Heads-down / independent", "Fast-paced / deadline-driven"]}, "g1": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Fast-paced / deadline-driven", "Flexible hours", "Heads-down / independent"]}, "g2": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing", "Buyer-side driven", "Seller-side driven"], "styles": ["Collaborative / team-based", "Comfortable training others", "Customer facing"]}, "g3": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven", "Buyer-side driven", "Seller-side driven"], "styles": ["Heads-down / independent", "Collaborative / team-based", "Comfortable training others", "Customer facing"]}, "g4": {"seg": ["Residential"], "txn": ["Purchase", "Split closing", "Attorney-driven"], "styles": ["Prefers clear checklists", "Collaborative / team-based", "Heads-down / independent"]}, "g5": {"seg": ["Residential"], "txn": ["Purchase"], "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven"]}, "g6": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Collaborative / team-based", "Heads-down / independent"]}, "g7": {"seg": ["Residential", "Commercial light"], "txn": ["Refinance", "Split closing"], "styles": ["Flexible hours", "Prefers clear checklists"]}, "g8": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing"], "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven", "Customer facing"]}, "g9": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Fast-paced / deadline-driven"]}, "g10": {"seg": ["Residential"], "txn": ["Purchase", "Split closing"], "styles": ["Prefers chat & email", "Collaborative / team-based"]}, "g11": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Comfortable training others", "Collaborative / team-based"]}, "g12": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing", "Buyer-side driven"], "styles": ["Heads-down / independent", "Comfortable training others", "Customer facing"]}, "g13": {"seg": ["Residential"], "txn": ["Purchase", "Split closing", "Attorney-driven", "Buyer-side driven", "Seller-side driven"], "styles": ["Flexible hours", "Happy on phone or video", "Customer facing"]}, "g14": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"], "styles": ["Heads-down / independent", "Happy on phone or video", "Flexible hours"]}, "g15": {"seg": ["Residential"], "txn": ["Purchase", "Attorney-driven"], "styles": ["Flexible hours", "Collaborative / team-based"]}, "g16": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Collaborative / team-based", "Prefers clear checklists"]}, "g17": {"seg": ["Residential", "Commercial light"], "txn": ["Attorney-driven"], "styles": ["Heads-down / independent", "Comfortable training others", "Fast-paced / deadline-driven"]}, "g18": {"seg": ["Residential"], "txn": ["Refinance", "Attorney-driven"], "styles": ["Happy on phone or video", "Flexible hours", "Customer facing"]}, "g19": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Heads-down / independent"]}, "g20": {"seg": ["Residential", "Commercial light"], "txn": ["Refinance", "Split closing", "Attorney-driven"], "styles": ["Prefers clear checklists", "Comfortable training others"]}, "g21": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Flexible hours", "Heads-down / independent"]}, "g22": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Heads-down / independent", "Flexible hours", "Customer facing"]}, "g23": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Attorney-driven", "Seller-side driven"], "styles": ["Prefers clear checklists", "Comfortable training others", "Collaborative / team-based", "Customer facing"]}, "g24": {"seg": ["Residential"], "txn": ["Refinance", "Split closing"], "styles": ["Heads-down / independent", "Prefers clear checklists", "Flexible hours"]}, "g25": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Comfortable training others", "Fast-paced / deadline-driven", "Happy on phone or video"]}, "g26": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance"], "styles": ["Flexible hours", "Happy on phone or video"]}, "g27": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Heads-down / independent", "Fast-paced / deadline-driven", "Prefers chat & email"]}, "g28": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"], "styles": ["Fast-paced / deadline-driven", "Prefers chat & email", "Flexible hours", "Customer facing"]}, "g29": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Heads-down / independent"]}, "g30": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Attorney-driven"], "styles": ["Flexible hours", "Prefers clear checklists", "Comfortable training others"]}, "g31": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Happy on phone or video", "Flexible hours", "Fast-paced / deadline-driven"]}};
 Object.assign(EXP,{"mr": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"]}, "jk": {"seg": ["Residential"], "txn": ["Refinance", "Purchase", "Split closing"]}, "lt": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"]}, "aw": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Attorney-driven"]}, "pc": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Buyer-side driven", "Seller-side driven"]}, "rm": {"seg": ["Residential"], "txn": ["Refinance", "Purchase"]}, "sl": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Seller-side driven", "Attorney-driven"]}, "dj": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"]}, "kb": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance", "Attorney-driven"]}});
 people.forEach(p=>Object.assign(p,EXP[p.id]||{}));
+people.forEach((p,i)=>{const r=p.role;const add=x=>{if(!p.sys.includes(x))p.sys.push(x)};if(/Examiner|Policy|Title Officer|Default|Analyst/.test(r)&&i%4!==3)add("Ignite");if(/Closing|Closer|Escrow|Post-Closing|Customer Service/.test(r)&&i%5!==4)add("ClarityFirst");if(/Escrow|Commercial Title Officer/.test(r))add("Ignite");});
 ["jk","pc","sl"].forEach(id=>{const p=people.find(x=>x.id===id);if(!p.styles.includes("Customer facing"))p.styles.push("Customer facing")});
 const chargeMo=p=>Math.round(p.salary*p.pct/100/12/10)*10;
 const fmt$=n=>"$"+n.toLocaleString();
@@ -509,7 +549,7 @@ let session=null;
 const $=id=>document.getElementById(id);
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
 function go(v){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.view===v));document.querySelectorAll(".view").forEach(s=>s.classList.toggle("active",s.id===v));
-  const roles={home:["Employee","MR"],profile:["Employee — Maria Russo","MR"],supervisor:["Supervisor — David Chen","DC"],ops:[session?session.name+" ("+(session.hr?"HR":LEVELS[session.level])+")":"Not signed in",session?session.name.split(" ").map(x=>x[0]).join(""):"—"],dash:["HR Program Lead","HR"]};
+  const roles={home:["Employee","MR"],profile:["Employee — Maria Russo","MR"],supervisor:["Supervisor — David Chen","DC"],ops:[session?session.name+" ("+(session.hr?"HR":LEVELS[session.level])+")":"Not signed in",session?session.name.split(" ").map(x=>x[0]).join(""):"—"],dash:["HR Program Lead","HR"],feedback:["Presentation guest","👋"]};
   $("roleLabel").textContent="Viewing as: "+roles[v][0];$("avatarInit").textContent=roles[v][1];window.scrollTo(0,0)}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.view));
 
@@ -607,6 +647,12 @@ function renderDash(){const flows=[["Commercial Services — NYC",3400],["Closin
 
 chips($("sysChips"),SYS,state.sys,updSummary);chips($("licChips"),LIC,state.lic);chips($("typeChips"),TYPES,state.types,updSummary);$("pMaxWk").onchange=updSummary;chips($("styleChips"),STYLES,state.styles,updSummary);chips($("segChips"),SEGS,state.seg,updSummary);chips($("txnChips"),TXNS,state.txn,updSummary);$("pTravel").onchange=updSummary;$("pTz").onchange=()=>{$("tzLbl").textContent=$("pTz").value;updSummary()};renderIdp();fillFilters();if(window.innerWidth<900)$("filtersBox").removeAttribute("open");
 renderSkills();renderWeek();updSummary();renderQueue();renderDash();setMyStatus();
+const FB_TO=[...document.querySelectorAll(".fbAddr")].map(e=>{const a=e.dataset.u+"@"+e.dataset.d;e.textContent=a;return a});
+const fbRate=new Set(["4 — very useful"]);
+function fbText(){return `Name: ${$("fbName").value||"(not given)"}\nArea: ${$("fbArea").value}\nUsefulness: ${[...fbRate].join(", ")||"—"}\nWould join a pilot: ${$("fbPilot").value}\n\nWhat would make it more useful:\n${$("fbIdeas").value||"—"}\n\nConcerns or risks:\n${$("fbRisks").value||"—"}\n`}
+function sendFeedback(){location.href="mailto:"+FB_TO.join(",")+"?subject="+encodeURIComponent("Talent Exchange demo feedback")+"&body="+encodeURIComponent(fbText())}
+function copyFeedback(){const t="To: "+FB_TO.join(", ")+"\nSubject: Talent Exchange demo feedback\n\n"+fbText();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied — paste into an email"),()=>{prompt("Copy this text:",t)})}
+function renderRate(){$("fbRate").innerHTML="";["1 — not useful","2","3","4 — very useful","5 — would use now"].forEach(x=>{const c=document.createElement("button");c.type="button";c.className="chip"+(fbRate.has(x)?" on":"");c.textContent=x;c.onclick=()=>{fbRate.clear();fbRate.add(x);renderRate()};$("fbRate").appendChild(c)})}renderRate();
 </script>
 </body>
 </html>
