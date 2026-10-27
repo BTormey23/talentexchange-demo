@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talent Exchange — Concept Demo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Concept demo of an internal talent-sharing marketplace. Fictional people and figures.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2545; --navy-2:#13315C; --blue:#0B6BCB; --blue-soft:#E7F0FA; --sky:#8DB8E8;
+  --ink:#1B2433; --muted:#5B6678; --line:#DCE3EC; --bg:#F4F7FB; --card:#FFFFFF;
+  --green:#1E8E5A; --green-soft:#E3F4EB; --amber:#B7791F; --amber-soft:#FDF3E1; --red:#C0392B; --red-soft:#FBE9E7;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Source Sans 3",Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
+button,input,select,textarea{font:inherit}
+.demo-banner{background:#FFF7E0;color:#6B4E00;font-size:13px;text-align:center;padding:6px 16px;border-bottom:1px solid #F0DFA8}
+header{background:var(--navy);color:#fff}
+.topbar{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:14px 20px;flex-wrap:wrap}
+.logo-slot{border:1.5px dashed rgba(255,255,255,.45);border-radius:6px;padding:6px 12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.brand{font-weight:700;font-size:20px;letter-spacing:.01em}
+.brand small{display:block;font-weight:400;font-size:13px;color:var(--sky);letter-spacing:.04em}
+.user{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-weight:700}
+nav{background:var(--navy-2)}
+.tabs{max-width:1200px;margin:0 auto;display:flex;gap:4px;padding:0 20px;overflow-x:auto}
+.tab{background:none;border:0;color:#C9D6E8;padding:12px 16px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-weight:600}
+.tab.active{color:#fff;border-bottom-color:var(--sky)}
+.tab .count{background:var(--blue);color:#fff;border-radius:10px;padding:0 7px;font-size:12px;margin-left:6px}
+main{max-width:1200px;margin:0 auto;padding:24px 20px 60px}
+.view{display:none}.view.active{display:block}
+h1{font-size:26px;margin:0 0 4px;color:var(--navy)}
+h2{font-size:18px;margin:0 0 12px;color:var(--navy)}
+.sub{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1.4fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+.steps{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.step{flex:1;min-width:140px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--muted)}
+.step b{display:block;color:var(--navy);font-size:14px}
+.step.done{border-color:var(--green);background:var(--green-soft)}
+.step.cur{border-color:var(--blue);background:var(--blue-soft)}
+label{display:block;font-weight:600;font-size:13px;color:var(--navy);margin:12px 0 4px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:6px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--sky);border-color:var(--blue)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+.drop{border:2px dashed var(--sky);border-radius:8px;padding:18px;text-align:center;color:var(--muted);background:var(--blue-soft);cursor:pointer}
+.drop.has{border-style:solid;border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:16px;padding:5px 12px;cursor:pointer;font-size:13px}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.skill-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.skill-row span{flex:1}
+.lvl button{border:1px solid var(--line);background:#fff;width:26px;height:26px;border-radius:5px;cursor:pointer;font-size:12px}
+.lvl button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.week{display:grid;grid-template-columns:70px repeat(5,1fr);gap:4px;font-size:12px;margin-top:6px}
+.week .h{text-align:center;font-weight:700;color:var(--navy);padding:4px 0}
+.week .t{color:var(--muted);padding:8px 4px}
+.slot{border:1px solid var(--line);border-radius:5px;background:#fff;cursor:pointer;min-height:32px}
+.slot.on{background:var(--blue);border-color:var(--blue)}
+.pct{display:flex;align-items:center;gap:14px}
+.pct input{flex:1;accent-color:var(--blue)}
+.pct output{font-size:28px;font-weight:700;color:var(--blue);min-width:70px;text-align:right}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:6px;padding:10px 18px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.green{background:var(--green)}
+.btn.red{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:12px;padding:2px 10px}
+.b-pend{background:var(--amber-soft);color:var(--amber)}
+.b-ok{background:var(--green-soft);color:var(--green)}
+.b-no{background:var(--red-soft);color:var(--red)}
+.b-draft{background:#EEF1F5;color:var(--muted)}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 10px;font-size:14px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:600}
+.req{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;background:#fff}
+.req-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.req-top .avatar{background:var(--navy-2);color:#fff}
+.req-top .who{flex:1;min-width:180px}
+.req-top .who b{display:block;color:var(--navy)}
+.req-top .who span{color:var(--muted);font-size:13px}
+.mini{font-size:13px;color:var(--muted)}
+.tagline{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{background:var(--blue-soft);color:var(--navy);border-radius:4px;padding:2px 8px;font-size:12px;font-weight:600}
+.approve-box{display:none;margin-top:12px;padding:12px;background:var(--bg);border-radius:8px}
+.approve-box.open{display:block}
+.attest{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:10px}
+.attest input{margin-top:3px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.stat b{display:block;font-size:30px;color:var(--navy)}
+.stat span{color:var(--muted);font-size:13px}
+.match{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px;background:#fff;flex-wrap:wrap}
+.score{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:var(--green);flex:none}
+.match .info{flex:1;min-width:200px}
+.match .info b{color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line)}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue)}
+.empty{color:var(--muted);text-align:center;padding:30px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:8px;transition:transform .25s;z-index:10;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.lock{font-size:11px;margin-left:6px;opacity:.85}
+.sso-wrap{max-width:520px;margin:30px auto}
+.sso-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px}
+.sso-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sso-icon{flex:none;width:44px;height:44px;border-radius:10px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:20px}
+.idp{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.idp:hover{border-color:var(--blue);background:var(--blue-soft)}
+.idp .avatar{width:32px;height:32px;font-size:13px;color:#fff;flex:none}
+.idp b{display:block;color:var(--navy);font-size:14px}
+.idp span{font-size:12px;color:var(--muted)}
+.idp .lvlpill{margin-left:auto;font-size:11px;font-weight:700;border-radius:10px;padding:2px 8px;white-space:nowrap}
+.spinner{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:10px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.denied{border-left:0;background:var(--red-soft);border:1px solid #F2C4BE;border-radius:10px;padding:18px;color:#7A2318}
+.session{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--green-soft);border:1px solid #BFE3CF;color:#155D3C;border-radius:8px;padding:8px 12px;font-size:13px;margin-bottom:18px}
+.session b{color:#0E4A2F}
+.session .btn{margin-left:auto;padding:4px 10px;font-size:13px}
+.search-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:220px;font-size:16px;padding:12px 14px}
+.layout{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:start}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.filters label:first-child{margin-top:0}
+.cand{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px;background:#fff}
+.cand-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.cand-top .score{width:50px;height:50px;font-size:15px}
+.cand .info{flex:1;min-width:220px}
+.cand .info b{color:var(--navy);font-size:16px}
+.cost{background:var(--bg);border-radius:8px;padding:10px 12px;font-size:13px;min-width:200px}
+.cost b{display:block;font-size:18px;color:var(--navy)}
+.req-form{display:none;margin-top:12px;padding:12px;background:var(--bg);border-radius:8px}
+.req-form.open{display:block}
+.resultbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.resultbar .mini{flex:1}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+<div class="demo-banner">Concept demo — fictional people and figures. Not a live system; nothing you enter is saved or sent.</div>
+<header>
+  <div class="topbar">
+    <div class="brand">FA Demo <small>TALENT EXCHANGE</small></div>
+    <div class="user"><span id="roleLabel">Viewing as: Employee</span><div class="avatar" id="avatarInit">MR</div></div>
+  </div>
+  <nav><div class="tabs">
+    <button class="tab active" data-view="home">Overview</button>
+    <button class="tab" data-view="profile">My Profile &amp; Availability</button>
+    <button class="tab" data-view="supervisor">Supervisor Approvals <span class="count" id="pendCount">2</span></button>
+    <button class="tab" data-view="ops">Find Talent<span class="lock">🔒 SSO</span></button>
+    <button class="tab" data-view="dash">Program Dashboard</button>
+  </div></nav>
+</header>
+
+<main>
+<!-- OVERVIEW -->
+<section class="view active" id="home">
+  <h1>Share capacity across the enterprise</h1>
+  <p class="sub">Employees with authorized spare capacity list their skills and hours. Teams facing a volume surge borrow trained, onboarded colleagues instead of opening a new-hire req. The borrowing team pays the same share of salary as the share of time borrowed.</p>
+  <div class="grid g4">
+    <div class="card"><h2>1 · Create profile</h2><p class="mini">Resume, systems you know, and skill levels.</p></div>
+    <div class="card"><h2>2 · Set availability</h2><p class="mini">Weekly time windows, share of your week, and the engagements you'll take: PTO coverage, seasonal surge, or customer/project surge.</p></div>
+    <div class="card"><h2>3 · Supervisor sign-off</h2><p class="mini">Your direct supervisor approves the hours, cap and end date.</p></div>
+    <div class="card"><h2>4 · Get matched</h2><p class="mini">Area managers and above search by skill and system after SSO sign-in. The borrowing cost center pays the same % of your salary as the % of time borrowed.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="card">
+      <h2>Try the demo flow</h2>
+      <p class="mini">Each tab is a different user's view. Walk through them in order:</p>
+      <ol class="mini" style="padding-left:18px;margin:8px 0 16px">
+        <li><b>My Profile</b> — Maria completes her profile and submits it.</li>
+        <li><b>Supervisor Approvals</b> — her supervisor approves with a cap and end date.</li>
+        <li><b>Find Talent</b> — sign in through SSO. Try a team supervisor (blocked) and then an area manager (can search). Maria now appears in results.</li>
+        <li><b>Program Dashboard</b> — the enterprise view of hours shared and cost avoided.</li>
+      </ol>
+      <button class="btn" onclick="go('profile')">Start as an employee</button>
+    </div>
+    <div class="card">
+      <h2>Guardrails built in</h2>
+      <ul class="mini" style="padding-left:18px;margin:0">
+        <li>No listing goes live without the direct supervisor's approval.</li>
+        <li>Supervisor sets a hard cap on % of time and an expiry date; can revoke any time.</li>
+        <li>Employees reconfirm availability every 30 days; supervisors re-approve every 90 days. Lapsed listings drop out of search.</li>
+        <li>Home team keeps first call on the employee's time.</li>
+        <li>Profiles are visible only to area, state and region managers, senior executives and HR, through SSO. Peers and line supervisors cannot browse them.</li>
+        <li>Chargeback = employee's salary × % of time borrowed, moved from the borrowing cost center to the home cost center.</li>
+        <li>Access, licensing and data rules checked before assignment starts.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="view" id="profile">
+  <h1>My Profile &amp; Availability</h1>
+  <p class="sub">Tell other teams what you know and when you can help. Nothing is visible until your supervisor approves.</p>
+  <div class="steps" id="profSteps">
+    <div class="step cur"><b>Profile</b>In progress</div>
+    <div class="step"><b>Skills</b>Not started</div>
+    <div class="step"><b>Availability</b>Not started</div>
+    <div class="step"><b>Supervisor sign-off</b>Not submitted</div>
+  </div>
+  <div class="grid g2">
+    <div>
+      <div class="card">
+        <h2>About you</h2>
+        <div class="row">
+          <div><label>Full name</label><input type="text" id="pName" value="Maria Russo"></div>
+          <div><label>Employee ID</label><input type="text" value="FA-204871"></div>
+        </div>
+        <div class="row">
+          <div><label>Current role</label><input type="text" id="pRole" value="Title Examiner II"></div>
+          <div><label>Home team</label><input type="text" id="pTeam" value="Residential Title Production — NY"></div>
+        </div>
+        <div class="row">
+          <div><label>Direct supervisor</label><input type="text" id="pSup" value="David Chen"></div>
+          <div><label>Work location</label><select><option>Hybrid — New York, NY</option><option>Remote</option><option>On-site</option></select></div>
+        </div>
+        <div class="row">
+          <div><label>Area / State / Region</label><input type="text" value="NYC Metro · NY · Northeast" readonly></div>
+          <div><label>Annual pay rate</label><input type="text" value="$68,000 (from HRIS · visible only to area managers+ and HR)" readonly></div>
+        </div>
+        <label>Resume</label>
+        <div class="drop" id="drop" onclick="document.getElementById('resume').click()">Click to upload your resume (PDF or Word)</div>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" hidden>
+        <label>Willing to travel if needed</label>
+        <select id="pTravel"><option value="0">No travel</option><option value="1">Local / day trips</option><option value="2" selected>Regional (overnight OK)</option><option value="3">Nationwide</option></select>
+        <label>About me</label>
+        <p class="note" style="margin:0 0 4px">A few lines for managers looking to borrow help: experience, what you're best at, what you'd like to learn.</p>
+        <textarea id="pNote" rows="3">Six years in residential title exam; comfortable with commercial packages and heavy curative. Happy to train others on exam checklists.</textarea>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>Skills &amp; systems</h2>
+        <label>Systems you can work in without training</label>
+        <div class="chips" id="sysChips"></div>
+        <label style="margin-top:16px">Skills and proficiency (1 = learning, 3 = can train others)</label>
+        <div id="skillList"></div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <input type="text" id="newSkill" placeholder="Add a skill, e.g. 1031 exchange coordination">
+          <button class="btn ghost" onclick="addSkill()">Add</button>
+        </div>
+        <label style="margin-top:16px">Experience: property type (select all that apply)</label>
+        <div class="chips" id="segChips"></div>
+        <label style="margin-top:16px">Experience: transaction type (select all that apply)</label>
+        <div class="chips" id="txnChips"></div>
+        <label style="margin-top:16px">Licenses &amp; certifications</label>
+        <div class="chips" id="licChips"></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>How I like to work</h2>
+        <label>Working styles (pick any)</label>
+        <div class="chips" id="styleChips"></div>
+        <label>Anything else a borrowing manager should know?</label>
+        <textarea id="pStyleNote" rows="2">I do my best work with a clear queue and a checklist. Glad to join a daily stand-up; prefer Teams chat for quick questions.</textarea>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Availability</h2>
+        <label>Share of your week you can lend</label>
+        <div class="pct"><input type="range" id="pct" min="10" max="60" step="5" value="30"><output id="pctOut">30%</output></div>
+        <p class="note" id="pctHrs">≈ 12 hours / week of a 40-hour week</p>
+        <label>Time zone for the hours below</label>
+        <select id="pTz"><option value="ET" selected>Eastern (ET)</option><option value="CT">Central (CT)</option><option value="MT">Mountain (MT)</option><option value="PT">Pacific (PT)</option></select>
+        <label>When you're typically free, in <span id="tzLbl">ET</span> (click to toggle)</label>
+        <div class="week" id="week"></div>
+        <div class="row" style="margin-top:6px">
+          <div><label>Available from</label><input type="date" id="dFrom" value="2026-11-02"></div>
+          <div><label>Through</label><input type="date" id="dTo" value="2027-01-29"></div>
+        </div>
+        <label>Engagement types I'm open to</label>
+        <div class="chips" id="typeChips"></div>
+        <label>Longest engagement I can take on</label>
+        <select id="pMaxWk"><option value="3">Up to 3 weeks</option><option value="13" selected>Up to 3 months</option><option value="26">Up to 6 months</option><option value="52">6+ months</option></select>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>Submit for sign-off</h2>
+        <p class="mini" style="margin:-4px 0 12px">🔒 <b>Who can see your profile, including your pay rate:</b> only area, state and region managers, senior executives and HR, after company SSO sign-in. Coworkers and other line supervisors cannot.</p>
+        <dl class="kv" id="summary"></dl>
+        <div class="attest"><input type="checkbox" id="att1"><span>I confirm this availability is spare capacity and won't affect my core responsibilities.</span></div>
+        <div class="attest"><input type="checkbox" id="att2"><span>I understand my supervisor can change or revoke this at any time. I'll be asked to reconfirm every 30 days, and my supervisor re-approves every 90 days.</span></div>
+        <div style="margin-top:14px">Status: <span class="badge b-draft" id="myStatus">Draft</span></div>
+        <div class="actions">
+          <button class="btn ghost" onclick="toast('Draft saved')">Save draft</button>
+          <button class="btn" id="submitBtn" onclick="submitProfile()">Send to David Chen for approval</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPERVISOR -->
+<section class="view" id="supervisor">
+  <h1>Supervisor Approvals</h1>
+  <p class="sub">Viewing as David Chen, Manager, Residential Title Production — NY. You decide how much of your team's time can be lent, and for how long.</p>
+  <div class="grid g2">
+    <div id="queue"></div>
+    <div>
+      <div class="card">
+        <h2>Your team's lent capacity</h2>
+        <table><thead><tr><th>Employee</th><th>Cap</th><th>Status</th></tr></thead><tbody id="teamTbl"></tbody></table>
+        <p class="note">For borrowed time, your cost center is credited the same % of the employee's salary as the % of time lent.</p>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>What you're approving</h2>
+        <ul class="mini" style="padding-left:18px;margin:0">
+          <li>Once you approve, the profile becomes searchable by area managers and above (and HR) through SSO, up to the cap you set.</li>
+          <li>Each specific assignment still comes to you for a one-click confirm.</li>
+          <li>You can pause or revoke availability if your own volume returns.</li>
+          <li>You'll be asked to re-approve every 90 days, or the listing expires.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPS / FIND TALENT -->
+<section class="view" id="ops">
+  <div id="ssoGate">
+    <div class="sso-wrap">
+      <div class="sso-card">
+        <div class="sso-head"><div class="sso-icon">🔒</div><div><h2 style="margin:0">Choose a demo user</h2><p class="mini" style="margin:0">Search is restricted to area managers and above, and HR. In the real system, sign-in would use company single sign-on and the role would come from the HR system.</p></div></div>
+        <div id="idpList">
+          <div id="idpPick">
+            <p class="mini" style="margin:0 0 8px">Pick who you want to be. Try the team supervisor first (blocked), then an area manager or above.</p>
+            <div id="idpUsers"></div>
+          </div>
+        </div>
+        <div id="idpBusy" style="display:none;text-align:center"><div class="spinner"></div><p class="mini">Checking role…</p></div>
+        <div id="idpDenied" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="searchApp" style="display:none">
+    <div class="session" id="sessionBar"></div>
+    <h1>Find Talent</h1>
+    <p class="sub">Search colleagues whose supervisors have approved spare capacity. Everyone shown is already onboarded and trained on our systems.</p>
+    <div class="search-bar">
+      <input type="text" id="q" placeholder="Search skills, systems, roles or names — e.g. “commercial exam”, “FAST”, “escrow”">
+      <button class="btn" onclick="runSearch()">Search</button>
+    </div>
+    <div class="layout">
+      <details class="card filters" id="filtersBox" open><summary style="cursor:pointer;font-weight:700;color:var(--navy);margin-bottom:8px">Filters</summary>
+        <label>Skill</label>
+        <select id="fSkill"><option value="">Any skill</option></select>
+        <label>Property-type experience</label>
+        <div class="chips" id="fSeg"></div>
+        <label>Transaction experience (must have all selected)</label>
+        <div class="chips" id="fTxn"></div>
+        <label>Must know these systems</label>
+        <div class="chips" id="fSys"></div>
+        <label>Engagement type</label>
+        <select id="fEng"><option value="">Any type</option></select>
+        <label>Length needed</label>
+        <select id="fLen"><option value="0">Any length</option><option value="2">About 2 weeks</option><option value="8">About 2 months</option><option value="13">About 3 months</option><option value="26">About 6 months</option><option value="52">6+ months</option></select>
+        <label>Annual pay rate</label>
+        <div class="row" style="gap:8px"><input type="number" id="fPayMin" placeholder="Min $" step="5000"><input type="number" id="fPayMax" placeholder="Max $" step="5000"></div>
+        <label>Minimum availability</label>
+        <select id="fPct"><option value="0">Any</option><option value="20">20%+ (≈8 hrs/wk)</option><option value="30">30%+ (≈12 hrs/wk)</option><option value="40">40%+ (≈16 hrs/wk)</option></select>
+        <label>Region</label>
+        <select id="fRegion"><option value="">All regions</option></select>
+        <label>State</label>
+        <select id="fState"><option value="">All states</option></select>
+        <label>License</label>
+        <select id="fLic"><option value="">Any</option></select>
+        <label>Availability time zone</label>
+        <select id="fTz"><option value="">Any time zone</option><option value="ET">Eastern (ET)</option><option value="CT">Central (CT)</option><option value="MT">Mountain (MT)</option><option value="PT">Pacific (PT)</option></select>
+        <label>Willing to travel</label>
+        <select id="fTravel"><option value="0">Doesn't matter</option><option value="1">At least local / day trips</option><option value="2">At least regional (overnight)</option><option value="3">Nationwide</option></select>
+        <label>Working style</label>
+        <select id="fStyle"><option value="">Any</option></select>
+        <div class="actions" style="justify-content:flex-start"><button class="btn ghost" onclick="clearFilters()">Clear filters</button></div>
+      </details>
+      <div>
+        <div class="resultbar"><span class="mini" id="resCount"></span>
+          <select id="sortBy" style="width:auto"><option value="score">Sort: best match</option><option value="pct">Sort: most available</option><option value="cost">Sort: lowest chargeback</option><option value="payLo">Sort: pay, low to high</option><option value="payHi">Sort: pay, high to low</option><option value="len">Sort: longest engagement</option><option value="travel">Sort: most willing to travel</option></select></div>
+        <div id="results"></div>
+        <p class="note">Chargeback = employee's salary × approved % of time, charged monthly to your cost center and credited to the home cost center. Pay rates come from the HR system and are visible only to signed-in area managers and above, and HR.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASH -->
+<section class="view" id="dash">
+  <h1>Program Dashboard</h1>
+  <p class="sub">Enterprise view for HR and Finance. Figures are illustrative for a pilot of ~150 participants.</p>
+  <div class="grid g4">
+    <div class="stat"><b>148</b><span>Employees with approved availability</span></div>
+    <div class="stat"><b>10,800</b><span>Hours shared this quarter</span></div>
+    <div class="stat"><b>11</b><span>New-hire requisitions avoided</span></div>
+    <div class="stat"><b>$710K</b><span>Hiring cost avoided this quarter (vs. new hires)</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="card">
+      <h2>Hours shared by receiving area</h2>
+      <table><tbody id="flowTbl"></tbody></table>
+    </div>
+    <div class="card">
+      <h2>Skills most requested</h2>
+      <table><tbody id="skillTbl"></tbody></table>
+      <p class="note">Gaps here signal where cross-training pays off first.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>Talent Exchange · Concept demonstration · Sample people and figures</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const SYS=["FAST","Endpoint","MRS","Simplifile","AgentNet","Title exam workstation","Closing/settlement platform","Excel / reporting","Salesforce"];
+const LIC=["NY Title Insurance Agent","Notary Public","Escrow officer","None"];
+const ENG=[["PTO coverage","1–3 wks"],["Seasonal surge","1–3 mos"],["Customer / portfolio / project surge","3–6 mos"],["Ongoing part-time","6+ mos"]];
+const TYPES=ENG.map(e=>e[0]+" ("+e[1]+")");
+const engLabel=n=>{const e=ENG.find(x=>x[0]===n);return e?e[0]+" ("+e[1]+")":n};
+const wkLabel=w=>w<=3?"up to 3 weeks":w<=13?"up to 3 months":w<=26?"up to 6 months":"6+ months";
+const state={
+  sys:new Set(["FAST","Title exam workstation","Excel / reporting"]),
+  lic:new Set(["NY Title Insurance Agent","Notary Public"]),
+  types:new Set([TYPES[0],TYPES[1]]),
+  styles:new Set(["Heads-down / independent","Comfortable training others"]),
+  seg:new Set(["Residential","Commercial light"]),
+  txn:new Set(["Purchase","Refinance","Attorney-driven"]),
+  skills:[["Residential title exam",3],["Commercial title exam",2],["Curative & clearance",3],["Policy typing",2]],
+  slots:new Set(["Mon-PM","Tue-PM","Wed-AM","Thu-PM","Fri-AM","Fri-PM"]),
+  resume:null, submitted:false, myStatus:"draft"
+};
+const people=[
+  {id:"mr",tz:"ET",travel:2,styles:["Heads-down / independent", "Comfortable training others"],about:"Six years in residential title exam; comfortable with commercial packages and heavy curative. Happy to train others on exam checklists.",slots:["Mon-PM", "Tue-PM", "Wed-AM", "Thu-PM", "Fri-AM", "Fri-PM"],eng:["PTO coverage", "Seasonal surge"],maxWk:13,name:"Maria Russo",role:"Title Examiner II",team:"Residential Title Production",area:"NYC Metro",state:"NY",region:"Northeast",salary:68000,pct:30,skills:["Residential title exam","Commercial title exam","Curative & clearance"],sys:["FAST","Title exam workstation","MRS"],lic:["NY Title Insurance Agent","Notary Public"],status:"none",from:"Nov 2",to:"Jan 29"},
+  {id:"jk",tz:"ET",travel:1,styles:["Happy on phone or video", "Fast-paced / deadline-driven"],about:"Refi volume down; afternoons consistently open.",slots:["Mon-PM", "Tue-PM", "Thu-PM"],eng:["PTO coverage", "Seasonal surge"],maxWk:8,name:"James Kowalski",role:"Closing Coordinator",team:"Closing & Settlement",area:"Capital District",state:"NY",region:"Northeast",salary:59000,pct:20,skills:["Closing / settlement support","Recording & post-closing"],sys:["Closing/settlement platform","Simplifile","FAST"],lic:["Notary Public"],status:"pending",from:"Nov 9",to:"Dec 31",note:"Refi volume down; afternoons consistently open."},
+  {id:"lt",tz:"ET",travel:0,styles:["Prefers clear checklists", "Comfortable training others"],about:"Can also help train new hires on policy typing.",slots:["Mon-AM", "Tue-AM", "Wed-AM", "Thu-AM"],eng:["Seasonal surge", "Customer / portfolio / project surge"],maxWk:26,name:"Lena Torres",role:"Policy Specialist",team:"Policy Production",area:"NYC Metro",state:"NY",region:"Northeast",salary:57000,pct:40,skills:["Policy typing","Residential title exam"],sys:["FAST","AgentNet"],lic:[],status:"pending",from:"Nov 2",to:"Feb 27",note:"Can also help train new hires on policy typing."},
+  {id:"aw",tz:"ET",travel:3,styles:["Heads-down / independent", "Comfortable training others"],about:"Commercial examiner, 12 years. Big portfolio deals and multi-state packages are where I add the most.",slots:["Tue-AM", "Wed-PM", "Thu-AM"],eng:["Customer / portfolio / project surge", "Ongoing part-time"],maxWk:52,name:"Andre Williams",role:"Senior Examiner",team:"Commercial Title",area:"Northern NJ",state:"NJ",region:"Northeast",salary:82000,pct:25,skills:["Commercial title exam","Curative & clearance"],sys:["FAST","Title exam workstation","AgentNet","MRS"],lic:["NJ Title Producer"],status:"approved",from:"Oct 15",to:"Jan 15"},
+  {id:"pc",tz:"ET",travel:2,styles:["Collaborative / team-based", "Happy on phone or video"],about:"Closer for 8 years; I keep agents and lenders in sync and stay calm on heavy month-end days.",slots:["Mon-AM", "Wed-AM", "Fri-AM"],eng:["PTO coverage", "Seasonal surge"],maxWk:13,name:"Pooja Chandra",role:"Closing Coordinator",team:"Closing & Settlement",area:"Hartford",state:"CT",region:"Northeast",salary:61000,pct:30,skills:["Closing / settlement support","Recording & post-closing"],sys:["Closing/settlement platform","Simplifile","FAST","Endpoint"],lic:["Notary Public"],status:"approved",from:"Nov 2",to:"Feb 13"},
+  {id:"rm",tz:"ET",travel:1,styles:["Prefers clear checklists", "Flexible hours"],about:"Newer examiner, eager to learn commercial work. Fast on residential searches.",slots:["Mon-PM", "Tue-PM", "Wed-PM", "Thu-PM"],eng:["PTO coverage", "Seasonal surge", "Customer / portfolio / project surge"],maxWk:26,name:"Ray Morales",role:"Title Examiner I",team:"Residential Title Production",area:"Philadelphia",state:"PA",region:"Mid-Atlantic",salary:58000,pct:40,skills:["Residential title exam","Policy typing"],sys:["FAST","AgentNet","Title exam workstation"],lic:[],status:"approved",from:"Nov 2",to:"Jan 8"},
+  {id:"sl",tz:"ET",travel:3,styles:["Comfortable training others", "Prefers chat & email"],about:"Licensed escrow officer; 1031 exchanges and complex payoffs are my specialty.",slots:["Tue-PM", "Thu-PM"],eng:["Customer / portfolio / project surge", "Ongoing part-time"],maxWk:52,name:"Sofia Lindqvist",role:"Escrow Officer",team:"Escrow Services",area:"Boston",state:"MA",region:"Northeast",salary:74000,pct:20,skills:["Closing / settlement support","1031 exchange coordination"],sys:["Closing/settlement platform","FAST","Salesforce","Endpoint"],lic:["Escrow officer","Notary Public"],status:"approved",from:"Nov 16",to:"Mar 31"},
+  {id:"dj",tz:"ET",travel:0,styles:["Heads-down / independent", "Prefers chat & email"],about:"Recording and post-closing across MD, VA and DC; I know the county quirks.",slots:["Mon-AM", "Tue-AM", "Wed-AM"],eng:["PTO coverage"],maxWk:3,name:"Darnell Jones",role:"Post-Closing Specialist",team:"Recording & Post-Closing",area:"Baltimore",state:"MD",region:"Mid-Atlantic",salary:54000,pct:35,skills:["Recording & post-closing","Policy typing"],sys:["Simplifile","FAST","Excel / reporting","MRS"],lic:[],status:"approved",from:"Nov 2",to:"Dec 18"},
+  {id:"kb",tz:"ET",travel:2,styles:["Comfortable training others", "Collaborative / team-based"],about:"Commercial title officer; happy to mentor newer examiners on underwriting questions.",slots:["Wed-PM", "Fri-PM"],eng:["Customer / portfolio / project surge"],maxWk:26,name:"Karen Brooks",role:"Commercial Title Officer",team:"Commercial Title",area:"Pittsburgh",state:"PA",region:"Mid-Atlantic",salary:96000,pct:15,skills:["Commercial title exam","Curative & clearance","Underwriting review"],sys:["FAST","Title exam workstation"],lic:["PA Title Agent"],status:"approved",from:"Nov 9",to:"Jan 30"},
+  {"id": "g0", "name": "Aisha Bennett", "role": "Title Examiner II", "team": "Residential Title Production", "area": "Boston", "state": "MA", "region": "Northeast", "tz": "ET", "salary": 62000, "pct": 40, "skills": ["Residential title exam", "Curative & clearance"], "sys": ["Title exam workstation", "AgentNet"], "lic": ["MA Title Agent"], "status": "approved", "from": "Nov 16", "to": "Dec 31", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 2, "styles": ["Heads-down / independent", "Fast-paced / deadline-driven"], "about": "4 years in title exam; I like clean files and I document curative steps so the next person can pick them up.", "slots": ["Mon-AM", "Tue-AM", "Wed-AM", "Fri-AM"]},
+  {"id": "g1", "name": "Tom Nguyen", "role": "Senior Examiner", "team": "Commercial Title", "area": "Chicago", "state": "IL", "region": "Central", "tz": "CT", "salary": 90000, "pct": 15, "skills": ["Commercial title exam", "Curative & clearance", "Underwriting review"], "sys": ["Title exam workstation", "MRS", "FAST"], "lic": ["IL Title Agent"], "status": "approved", "from": "Dec 1", "to": "Feb 27", "eng": ["PTO coverage"], "maxWk": 3, "travel": 3, "styles": ["Fast-paced / deadline-driven", "Flexible hours", "Heads-down / independent"], "about": "18 years in title exam; I like clean files and I document curative steps so the next person can pick them up.", "slots": ["Wed-AM", "Fri-PM"]},
+  {"id": "g2", "name": "Gabriela Ortiz", "role": "Closing Coordinator", "team": "Closing & Settlement", "area": "Los Angeles", "state": "CA", "region": "West", "tz": "PT", "salary": 61000, "pct": 35, "skills": ["Closing / settlement support", "Recording & post-closing"], "sys": ["FAST", "Simplifile", "Endpoint"], "lic": ["Notary Public"], "status": "approved", "from": "Dec 1", "to": "Jun 30", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 2, "styles": ["Collaborative / team-based", "Comfortable training others"], "about": "Closer background; I keep a tight checklist and rarely miss a funding deadline.", "slots": ["Wed-PM", "Thu-PM", "Fri-AM", "Fri-PM"]},
+  {"id": "g3", "name": "Michael Okafor", "role": "Escrow Officer", "team": "Escrow Services", "area": "Baltimore", "state": "MD", "region": "Mid-Atlantic", "tz": "ET", "salary": 77000, "pct": 25, "skills": ["Closing / settlement support", "1031 exchange coordination"], "sys": ["Closing/settlement platform", "Salesforce", "FAST", "Endpoint"], "lic": ["Escrow officer", "Notary Public"], "status": "approved", "from": "Nov 9", "to": "Jun 30", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 0, "styles": ["Heads-down / independent", "Collaborative / team-based", "Comfortable training others"], "about": "Licensed escrow officer, 5 years. Comfortable with complex payoffs, holdbacks and 1031 timing.", "slots": ["Mon-AM", "Thu-PM"]},
+  {"id": "g4", "name": "Priscilla Adeyemi", "role": "Policy Specialist", "team": "Policy Production", "area": "Harrisburg", "state": "PA", "region": "Mid-Atlantic", "tz": "ET", "salary": 55000, "pct": 35, "skills": ["Policy typing", "Residential title exam"], "sys": ["AgentNet", "FAST", "MRS"], "lic": [], "status": "approved", "from": "Dec 1", "to": "Feb 27", "eng": ["Seasonal surge", "Customer / portfolio / project surge"], "maxWk": 26, "travel": 3, "styles": ["Prefers clear checklists", "Collaborative / team-based", "Heads-down / independent"], "about": "10 years typing policies; fast and accurate, and I know the endorsement library well.", "slots": ["Tue-AM", "Wed-AM", "Thu-AM", "Thu-PM"]},
+  {"id": "g5", "name": "Jordan Lee", "role": "Post-Closing Specialist", "team": "Recording & Post-Closing", "area": "Charlotte", "state": "NC", "region": "Southeast", "tz": "ET", "salary": 53000, "pct": 10, "skills": ["Recording & post-closing", "Policy typing"], "sys": ["FAST", "Simplifile", "Excel / reporting", "MRS"], "lic": [], "status": "approved", "from": "Nov 16", "to": "Jun 30", "eng": ["Seasonal surge", "Customer / portfolio / project surge"], "maxWk": 26, "travel": 2, "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven"], "about": "Recording and post-closing for 7 years; I chase rejections until they are cleared.", "slots": ["Tue-AM", "Thu-AM"]},
+  {"id": "g6", "name": "Hannah Schultz", "role": "Commercial Title Officer", "team": "Commercial Title", "area": "Columbus", "state": "OH", "region": "Central", "tz": "ET", "salary": 102000, "pct": 20, "skills": ["Commercial title exam", "Underwriting review", "Curative & clearance"], "sys": ["Title exam workstation", "MRS", "FAST"], "lic": ["OH Title Agent"], "status": "approved", "from": "Nov 9", "to": "Dec 31", "eng": ["Seasonal surge"], "maxWk": 13, "travel": 1, "styles": ["Collaborative / team-based", "Heads-down / independent"], "about": "Commercial title officer, 17 years; portfolio and multi-site deals are my sweet spot.", "slots": ["Mon-PM", "Tue-PM"]},
+  {"id": "g7", "name": "Carlos Mendoza", "role": "Operations Analyst", "team": "Operations Reporting", "area": "Seattle", "state": "WA", "region": "West", "tz": "PT", "salary": 83000, "pct": 20, "skills": ["Reporting & analytics", "Process improvement"], "sys": ["Excel / reporting", "FAST"], "lic": [], "status": "approved", "from": "Nov 16", "to": "Mar 31", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 0, "styles": ["Flexible hours", "Prefers clear checklists"], "about": "Excel and reporting person; I automate the manual stuff so teams can focus on files.", "slots": ["Wed-AM", "Wed-PM"]},
+  {"id": "g8", "name": "Wei Zhang", "role": "Customer Service Rep", "team": "Order Intake", "area": "Richmond", "state": "VA", "region": "Mid-Atlantic", "tz": "ET", "salary": 49000, "pct": 25, "skills": ["Order entry & intake", "Customer service"], "sys": ["FAST", "Salesforce"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 2, "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven"], "about": "18 years on intake; quick on order entry and good with clients on the phone.", "slots": ["Tue-AM", "Thu-PM"]},
+  {"id": "g9", "name": "Brianna Foster", "role": "Default Title Specialist", "team": "Default / REO Services", "area": "Austin", "state": "TX", "region": "Central", "tz": "CT", "salary": 59000, "pct": 35, "skills": ["Default title & foreclosure", "Curative & clearance"], "sys": ["AgentNet", "MRS", "FAST"], "lic": [], "status": "approved", "from": "Nov 9", "to": "Jan 29", "eng": ["Seasonal surge"], "maxWk": 13, "travel": 2, "styles": ["Prefers clear checklists", "Fast-paced / deadline-driven"], "about": "Foreclosure title specialist; can switch to residential exam when default is slow.", "slots": ["Wed-PM", "Thu-PM", "Fri-AM", "Fri-PM"]},
+  {"id": "g10", "name": "Devon Price", "role": "Title Examiner II", "team": "Residential Title Production", "area": "Detroit", "state": "MI", "region": "Central", "tz": "ET", "salary": 63000, "pct": 30, "skills": ["Residential title exam", "Curative & clearance"], "sys": ["MRS", "Title exam workstation"], "lic": ["MI Title Agent"], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 2, "styles": ["Prefers chat & email", "Collaborative / team-based"], "about": "Examiner since 2012; strong on chain-of-title problems and older abstracts. Calm under deadline.", "slots": ["Mon-PM", "Wed-PM", "Fri-PM"]},
+  {"id": "g11", "name": "Mei Tanaka", "role": "Senior Examiner", "team": "Commercial Title", "area": "Denver", "state": "CO", "region": "Mountain", "tz": "MT", "salary": 76000, "pct": 30, "skills": ["Commercial title exam", "Curative & clearance", "Underwriting review"], "sys": ["MRS", "FAST", "Title exam workstation"], "lic": [], "status": "approved", "from": "Dec 1", "to": "Mar 31", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 2, "styles": ["Comfortable training others", "Collaborative / team-based"], "about": "3 years in title exam; I like clean files and I document curative steps so the next person can pick them up.", "slots": ["Tue-AM", "Wed-PM", "Thu-AM"]},
+  {"id": "g12", "name": "Luis Herrera", "role": "Closing Coordinator", "team": "Closing & Settlement", "area": "Portland", "state": "OR", "region": "West", "tz": "PT", "salary": 53000, "pct": 35, "skills": ["Closing / settlement support", "Recording & post-closing"], "sys": ["Simplifile", "Endpoint", "Closing/settlement platform", "FAST"], "lic": ["Notary Public"], "status": "approved", "from": "Nov 9", "to": "Mar 31", "eng": ["Seasonal surge"], "maxWk": 13, "travel": 1, "styles": ["Heads-down / independent", "Comfortable training others"], "about": "3 years coordinating closings. Good with anxious borrowers and keeping agents and lenders in sync.", "slots": ["Mon-AM", "Tue-AM", "Thu-PM", "Fri-AM"]},
+  {"id": "g13", "name": "Natalie Brooks", "role": "Escrow Officer", "team": "Escrow Services", "area": "Las Vegas", "state": "NV", "region": "West", "tz": "PT", "salary": 92000, "pct": 30, "skills": ["Closing / settlement support", "1031 exchange coordination"], "sys": ["Closing/settlement platform", "FAST", "Salesforce", "Endpoint"], "lic": ["Escrow officer", "Notary Public"], "status": "approved", "from": "Nov 9", "to": "Jun 30", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 1, "styles": ["Flexible hours", "Happy on phone or video"], "about": "Licensed escrow officer, 12 years. Comfortable with complex payoffs, holdbacks and 1031 timing.", "slots": ["Thu-AM", "Fri-AM", "Fri-PM"]},
+  {"id": "g14", "name": "Omar Haddad", "role": "Policy Specialist", "team": "Policy Production", "area": "Sacramento", "state": "CA", "region": "West", "tz": "PT", "salary": 50000, "pct": 35, "skills": ["Policy typing", "Residential title exam"], "sys": ["FAST", "AgentNet"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 1, "styles": ["Heads-down / independent", "Happy on phone or video", "Flexible hours"], "about": "Policy production since 2023; can also QC other people's work.", "slots": ["Mon-AM", "Wed-PM", "Thu-AM", "Thu-PM"]},
+  {"id": "g15", "name": "Rebecca Stein", "role": "Post-Closing Specialist", "team": "Recording & Post-Closing", "area": "Houston", "state": "TX", "region": "Central", "tz": "CT", "salary": 53000, "pct": 30, "skills": ["Recording & post-closing", "Policy typing"], "sys": ["MRS", "Excel / reporting", "Simplifile"], "lic": [], "status": "approved", "from": "Nov 9", "to": "Jun 30", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 1, "styles": ["Flexible hours", "Collaborative / team-based"], "about": "I know county recording quirks across several states and keep trailing docs moving.", "slots": ["Thu-PM", "Fri-AM", "Fri-PM"]},
+  {"id": "g16", "name": "Tyrone Jackson", "role": "Commercial Title Officer", "team": "Commercial Title", "area": "Long Island", "state": "NY", "region": "Northeast", "tz": "ET", "salary": 92000, "pct": 15, "skills": ["Commercial title exam", "Underwriting review", "Curative & clearance"], "sys": ["Title exam workstation", "FAST", "MRS"], "lic": ["NY Title Agent"], "status": "approved", "from": "Nov 16", "to": "Jan 29", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 2, "styles": ["Collaborative / team-based", "Prefers clear checklists"], "about": "Underwriting-minded; I like hard commercial files and mentoring newer examiners.", "slots": ["Tue-AM", "Wed-PM"]},
+  {"id": "g17", "name": "Emily Carter", "role": "Operations Analyst", "team": "Operations Reporting", "area": "Stamford", "state": "CT", "region": "Northeast", "tz": "ET", "salary": 75000, "pct": 25, "skills": ["Reporting & analytics", "Process improvement"], "sys": ["FAST", "Salesforce"], "lic": [], "status": "approved", "from": "Nov 16", "to": "Dec 31", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 3, "styles": ["Heads-down / independent", "Comfortable training others", "Fast-paced / deadline-driven"], "about": "Excel and reporting person; I automate the manual stuff so teams can focus on files.", "slots": ["Tue-PM", "Thu-AM"]},
+  {"id": "g18", "name": "Rohan Mehta", "role": "Customer Service Rep", "team": "Order Intake", "area": "Raleigh", "state": "NC", "region": "Southeast", "tz": "ET", "salary": 45000, "pct": 15, "skills": ["Order entry & intake", "Customer service"], "sys": ["Endpoint", "Salesforce", "FAST"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["PTO coverage"], "maxWk": 3, "travel": 1, "styles": ["Happy on phone or video", "Flexible hours"], "about": "Front-line intake; I know the order systems well and like a busy queue.", "slots": ["Mon-PM", "Wed-AM"]},
+  {"id": "g19", "name": "Sarah Kowal", "role": "Default Title Specialist", "team": "Default / REO Services", "area": "Phoenix", "state": "AZ", "region": "Mountain", "tz": "MT", "salary": 60000, "pct": 20, "skills": ["Default title & foreclosure", "Curative & clearance"], "sys": ["AgentNet", "MRS", "FAST"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Dec 31", "eng": ["Seasonal surge"], "maxWk": 13, "travel": 1, "styles": ["Prefers clear checklists", "Heads-down / independent"], "about": "Foreclosure title specialist; can switch to residential exam when default is slow.", "slots": ["Mon-PM", "Thu-AM"]},
+  {"id": "g20", "name": "Isabel Cruz", "role": "Title Examiner II", "team": "Residential Title Production", "area": "Newark", "state": "NJ", "region": "Northeast", "tz": "ET", "salary": 59000, "pct": 10, "skills": ["Residential title exam", "Curative & clearance", "Commercial title exam"], "sys": ["MRS", "AgentNet"], "lic": ["NJ Title Agent"], "status": "approved", "from": "Nov 9", "to": "Feb 27", "eng": ["Seasonal surge"], "maxWk": 13, "travel": 0, "styles": ["Prefers clear checklists", "Comfortable training others"], "about": "Examiner since 2020; strong on chain-of-title problems and older abstracts. Calm under deadline.", "slots": ["Tue-PM", "Fri-AM"]},
+  {"id": "g21", "name": "Ethan Park", "role": "Senior Examiner", "team": "Commercial Title", "area": "Santa Ana", "state": "CA", "region": "West", "tz": "PT", "salary": 90000, "pct": 10, "skills": ["Commercial title exam", "Curative & clearance", "Underwriting review"], "sys": ["MRS", "FAST", "Title exam workstation"], "lic": ["CA Title Agent"], "status": "approved", "from": "Nov 9", "to": "Jun 30", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 2, "styles": ["Flexible hours", "Heads-down / independent"], "about": "Examiner since 2017; strong on chain-of-title problems and older abstracts. Calm under deadline.", "slots": ["Mon-AM", "Fri-PM"]},
+  {"id": "g22", "name": "Fatima Rahman", "role": "Closing Coordinator", "team": "Closing & Settlement", "area": "Nashville", "state": "TN", "region": "Central", "tz": "CT", "salary": 50000, "pct": 30, "skills": ["Closing / settlement support", "Recording & post-closing"], "sys": ["Endpoint", "Simplifile", "Closing/settlement platform", "FAST"], "lic": ["Notary Public"], "status": "approved", "from": "Nov 2", "to": "Feb 27", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 2, "styles": ["Heads-down / independent", "Flexible hours"], "about": "Closer background; I keep a tight checklist and rarely miss a funding deadline.", "slots": ["Mon-AM", "Tue-AM", "Wed-PM"]},
+  {"id": "g23", "name": "Grace Liu", "role": "Escrow Officer", "team": "Escrow Services", "area": "Tampa", "state": "FL", "region": "Southeast", "tz": "ET", "salary": 76000, "pct": 30, "skills": ["Closing / settlement support", "1031 exchange coordination"], "sys": ["Closing/settlement platform", "Endpoint", "FAST", "Salesforce"], "lic": ["Escrow officer", "Notary Public"], "status": "approved", "from": "Nov 16", "to": "Jan 29", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 0, "styles": ["Prefers clear checklists", "Comfortable training others", "Collaborative / team-based"], "about": "Licensed escrow officer, 12 years. Comfortable with complex payoffs, holdbacks and 1031 timing.", "slots": ["Mon-AM", "Wed-AM", "Wed-PM"]},
+  {"id": "g24", "name": "Marcus Reed", "role": "Policy Specialist", "team": "Policy Production", "area": "Salt Lake City", "state": "UT", "region": "Mountain", "tz": "MT", "salary": 49000, "pct": 20, "skills": ["Policy typing", "Residential title exam"], "sys": ["AgentNet", "MRS"], "lic": [], "status": "approved", "from": "Nov 16", "to": "Dec 31", "eng": ["Customer / portfolio / project surge"], "maxWk": 26, "travel": 1, "styles": ["Heads-down / independent", "Prefers clear checklists", "Flexible hours"], "about": "Policy production since 2013; can also QC other people's work.", "slots": ["Mon-AM", "Fri-AM"]},
+  {"id": "g25", "name": "Olivia Grant", "role": "Post-Closing Specialist", "team": "Recording & Post-Closing", "area": "Miami", "state": "FL", "region": "Southeast", "tz": "ET", "salary": 49000, "pct": 25, "skills": ["Recording & post-closing", "Policy typing"], "sys": ["FAST", "MRS"], "lic": [], "status": "approved", "from": "Nov 9", "to": "Dec 31", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 3, "styles": ["Comfortable training others", "Fast-paced / deadline-driven", "Happy on phone or video"], "about": "Recording and post-closing for 12 years; I chase rejections until they are cleared.", "slots": ["Tue-AM", "Thu-PM"]},
+  {"id": "g26", "name": "Daniel Kim", "role": "Commercial Title Officer", "team": "Commercial Title", "area": "Tysons", "state": "VA", "region": "Mid-Atlantic", "tz": "ET", "salary": 108000, "pct": 30, "skills": ["Commercial title exam", "Underwriting review"], "sys": ["FAST", "MRS"], "lic": [], "status": "approved", "from": "Nov 9", "to": "Mar 31", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 1, "styles": ["Flexible hours", "Happy on phone or video"], "about": "Commercial title officer, 10 years; portfolio and multi-site deals are my sweet spot.", "slots": ["Mon-AM", "Fri-AM", "Fri-PM"]},
+  {"id": "g27", "name": "Yolanda Pierce", "role": "Operations Analyst", "team": "Operations Reporting", "area": "San Diego", "state": "CA", "region": "West", "tz": "PT", "salary": 76000, "pct": 20, "skills": ["Reporting & analytics", "Process improvement"], "sys": ["Salesforce", "Excel / reporting", "FAST"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Mar 31", "eng": ["PTO coverage"], "maxWk": 3, "travel": 3, "styles": ["Heads-down / independent", "Fast-paced / deadline-driven", "Prefers chat & email"], "about": "Analyst who builds the volume and cycle-time reports; happy to help a team set up tracking during a surge.", "slots": ["Thu-PM", "Fri-PM"]},
+  {"id": "g28", "name": "Kevin Duarte", "role": "Customer Service Rep", "team": "Order Intake", "area": "Dallas", "state": "TX", "region": "Central", "tz": "CT", "salary": 51000, "pct": 10, "skills": ["Order entry & intake", "Customer service"], "sys": ["Endpoint", "Salesforce", "FAST"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 3, "styles": ["Fast-paced / deadline-driven", "Prefers chat & email", "Flexible hours"], "about": "Front-line intake; I know the order systems well and like a busy queue.", "slots": ["Wed-AM", "Thu-PM"]},
+  {"id": "g29", "name": "Lauren Hughes", "role": "Default Title Specialist", "team": "Default / REO Services", "area": "Atlanta", "state": "GA", "region": "Southeast", "tz": "ET", "salary": 54000, "pct": 10, "skills": ["Default title & foreclosure", "Curative & clearance"], "sys": ["FAST", "AgentNet", "MRS"], "lic": [], "status": "approved", "from": "Dec 1", "to": "Feb 27", "eng": ["PTO coverage", "Seasonal surge"], "maxWk": 13, "travel": 2, "styles": ["Prefers clear checklists", "Heads-down / independent"], "about": "Default and REO title for 17 years; used to volume spikes and tight timelines.", "slots": ["Wed-AM", "Thu-PM"]},
+  {"id": "g30", "name": "Samuel Ortega", "role": "Title Examiner II", "team": "Residential Title Production", "area": "Minneapolis", "state": "MN", "region": "Central", "tz": "CT", "salary": 68000, "pct": 20, "skills": ["Residential title exam", "Curative & clearance", "Commercial title exam"], "sys": ["Title exam workstation", "MRS", "AgentNet"], "lic": [], "status": "approved", "from": "Nov 2", "to": "Jan 29", "eng": ["Customer / portfolio / project surge", "Ongoing part-time"], "maxWk": 52, "travel": 0, "styles": ["Flexible hours", "Prefers clear checklists", "Comfortable training others"], "about": "7 years in title exam; I like clean files and I document curative steps so the next person can pick them up.", "slots": ["Thu-PM", "Fri-PM"]},
+  {"id": "g31", "name": "Nina Volkova", "role": "Senior Examiner", "team": "Commercial Title", "area": "Boston", "state": "MA", "region": "Northeast", "tz": "ET", "salary": 83000, "pct": 15, "skills": ["Commercial title exam", "Curative & clearance", "Underwriting review"], "sys": ["Title exam workstation", "FAST", "MRS"], "lic": ["MA Title Agent"], "status": "approved", "from": "Nov 16", "to": "Feb 27", "eng": ["Seasonal surge", "Customer / portfolio / project surge"], "maxWk": 26, "travel": 0, "styles": ["Happy on phone or video", "Flexible hours", "Fast-paced / deadline-driven"], "about": "16 years in title exam; I like clean files and I document curative steps so the next person can pick them up.", "slots": ["Mon-AM", "Tue-PM"]}
+];
+const EXP={"g0": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Heads-down / independent", "Fast-paced / deadline-driven"]}, "g1": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Fast-paced / deadline-driven", "Flexible hours", "Heads-down / independent"]}, "g2": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing", "Buyer-side driven", "Seller-side driven"], "styles": ["Collaborative / team-based", "Comfortable training others", "Customer facing"]}, "g3": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven", "Buyer-side driven", "Seller-side driven"], "styles": ["Heads-down / independent", "Collaborative / team-based", "Comfortable training others", "Customer facing"]}, "g4": {"seg": ["Residential"], "txn": ["Purchase", "Split closing", "Attorney-driven"], "styles": ["Prefers clear checklists", "Collaborative / team-based", "Heads-down / independent"]}, "g5": {"seg": ["Residential"], "txn": ["Purchase"], "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven"]}, "g6": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Collaborative / team-based", "Heads-down / independent"]}, "g7": {"seg": ["Residential", "Commercial light"], "txn": ["Refinance", "Split closing"], "styles": ["Flexible hours", "Prefers clear checklists"]}, "g8": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing"], "styles": ["Comfortable training others", "Prefers chat & email", "Fast-paced / deadline-driven", "Customer facing"]}, "g9": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Fast-paced / deadline-driven"]}, "g10": {"seg": ["Residential"], "txn": ["Purchase", "Split closing"], "styles": ["Prefers chat & email", "Collaborative / team-based"]}, "g11": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Comfortable training others", "Collaborative / team-based"]}, "g12": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Split closing", "Buyer-side driven"], "styles": ["Heads-down / independent", "Comfortable training others", "Customer facing"]}, "g13": {"seg": ["Residential"], "txn": ["Purchase", "Split closing", "Attorney-driven", "Buyer-side driven", "Seller-side driven"], "styles": ["Flexible hours", "Happy on phone or video", "Customer facing"]}, "g14": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"], "styles": ["Heads-down / independent", "Happy on phone or video", "Flexible hours"]}, "g15": {"seg": ["Residential"], "txn": ["Purchase", "Attorney-driven"], "styles": ["Flexible hours", "Collaborative / team-based"]}, "g16": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Collaborative / team-based", "Prefers clear checklists"]}, "g17": {"seg": ["Residential", "Commercial light"], "txn": ["Attorney-driven"], "styles": ["Heads-down / independent", "Comfortable training others", "Fast-paced / deadline-driven"]}, "g18": {"seg": ["Residential"], "txn": ["Refinance", "Attorney-driven"], "styles": ["Happy on phone or video", "Flexible hours", "Customer facing"]}, "g19": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Heads-down / independent"]}, "g20": {"seg": ["Residential", "Commercial light"], "txn": ["Refinance", "Split closing", "Attorney-driven"], "styles": ["Prefers clear checklists", "Comfortable training others"]}, "g21": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Flexible hours", "Heads-down / independent"]}, "g22": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Heads-down / independent", "Flexible hours", "Customer facing"]}, "g23": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Attorney-driven", "Seller-side driven"], "styles": ["Prefers clear checklists", "Comfortable training others", "Collaborative / team-based", "Customer facing"]}, "g24": {"seg": ["Residential"], "txn": ["Refinance", "Split closing"], "styles": ["Heads-down / independent", "Prefers clear checklists", "Flexible hours"]}, "g25": {"seg": ["Residential"], "txn": ["Purchase", "Refinance", "Attorney-driven"], "styles": ["Comfortable training others", "Fast-paced / deadline-driven", "Happy on phone or video"]}, "g26": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance"], "styles": ["Flexible hours", "Happy on phone or video"]}, "g27": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Heads-down / independent", "Fast-paced / deadline-driven", "Prefers chat & email"]}, "g28": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"], "styles": ["Fast-paced / deadline-driven", "Prefers chat & email", "Flexible hours", "Customer facing"]}, "g29": {"seg": ["Residential"], "txn": ["Refinance"], "styles": ["Prefers clear checklists", "Heads-down / independent"]}, "g30": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Attorney-driven"], "styles": ["Flexible hours", "Prefers clear checklists", "Comfortable training others"]}, "g31": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Refinance"], "styles": ["Happy on phone or video", "Flexible hours", "Fast-paced / deadline-driven"]}};
+Object.assign(EXP,{"mr": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Refinance", "Attorney-driven"]}, "jk": {"seg": ["Residential"], "txn": ["Refinance", "Purchase", "Split closing"]}, "lt": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"]}, "aw": {"seg": ["Commercial", "Commercial light"], "txn": ["Purchase", "Attorney-driven"]}, "pc": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Buyer-side driven", "Seller-side driven"]}, "rm": {"seg": ["Residential"], "txn": ["Refinance", "Purchase"]}, "sl": {"seg": ["Residential", "Commercial light"], "txn": ["Purchase", "Split closing", "Seller-side driven", "Attorney-driven"]}, "dj": {"seg": ["Residential"], "txn": ["Purchase", "Refinance"]}, "kb": {"seg": ["Commercial"], "txn": ["Purchase", "Refinance", "Attorney-driven"]}});
+people.forEach(p=>Object.assign(p,EXP[p.id]||{}));
+["jk","pc","sl"].forEach(id=>{const p=people.find(x=>x.id===id);if(!p.styles.includes("Customer facing"))p.styles.push("Customer facing")});
+const chargeMo=p=>Math.round(p.salary*p.pct/100/12/10)*10;
+const fmt$=n=>"$"+n.toLocaleString();
+const TRAVEL=["No travel","Local / day trips","Regional (overnight OK)","Nationwide"];
+const TZS=[["ET","Eastern"],["CT","Central"],["MT","Mountain"],["PT","Pacific"]];
+const SEGS=["Residential","Commercial light","Commercial"];
+const TXNS=["Purchase","Refinance","Split closing","Attorney-driven","Buyer-side driven","Seller-side driven"];
+const STYLES=["Customer facing","Heads-down / independent","Collaborative / team-based","Comfortable training others","Prefers clear checklists","Fast-paced / deadline-driven","Prefers chat & email","Happy on phone or video","Flexible hours"];
+const slotTxt=s=>{const d={};(s||[]).forEach(x=>{const[a,b]=x.split("-");(d[a]=d[a]||[]).push(b)});return Object.entries(d).map(([a,b])=>a+" "+(b.length>1?"all day":b[0])).join(", ")||"—"};
+const LEVELS={1:"Team supervisor",2:"Area manager",3:"State manager",4:"Region manager",5:"Senior executive"};
+const USERS=[
+  {id:"pn",name:"Priya Natarajan",title:"Area Manager, Commercial Services — NYC Metro",level:2,cc:"CC 4410 — Commercial Services NYC"},
+  {id:"kw",name:"Kevin Walsh",title:"Team Supervisor, Closing — Albany",level:1,cc:"CC 3120 — Closing Albany",manager:"Diane Foster (Area Manager, Capital District)"},
+  {id:"mb",name:"Marcus Bell",title:"State Manager, New Jersey",level:3,cc:"CC 5200 — NJ Operations"},
+  {id:"rk",name:"Rachel Kim",title:"Region Manager, Northeast",level:4,cc:"CC 6000 — Northeast Region"},
+  {id:"er",name:"Elena Ruiz",title:"SVP, Title Operations",level:5,cc:"CC 9000 — Title Operations"},
+  {id:"sp",name:"Sam Patel",title:"HR Business Partner",level:0,hr:true,cc:"—"}
+];
+let session=null;
+const $=id=>document.getElementById(id);
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
+function go(v){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.view===v));document.querySelectorAll(".view").forEach(s=>s.classList.toggle("active",s.id===v));
+  const roles={home:["Employee","MR"],profile:["Employee — Maria Russo","MR"],supervisor:["Supervisor — David Chen","DC"],ops:[session?session.name+" ("+(session.hr?"HR":LEVELS[session.level])+")":"Not signed in",session?session.name.split(" ").map(x=>x[0]).join(""):"—"],dash:["HR Program Lead","HR"]};
+  $("roleLabel").textContent="Viewing as: "+roles[v][0];$("avatarInit").textContent=roles[v][1];window.scrollTo(0,0)}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.view));
+
+function chips(el,list,set,cb){el.innerHTML="";list.forEach(x=>{const c=document.createElement("button");c.type="button";c.className="chip"+(set.has(x)?" on":"");c.textContent=x;c.onclick=()=>{set.has(x)?set.delete(x):set.add(x);c.classList.toggle("on");cb&&cb()};el.appendChild(c)})}
+function renderSkills(){const el=$("skillList");el.innerHTML="";state.skills.forEach((s,i)=>{const r=document.createElement("div");r.className="skill-row";r.innerHTML=`<span>${s[0]}</span><div class="lvl">${[1,2,3].map(n=>`<button class="${s[1]===n?"on":""}" onclick="setLvl(${i},${n})">${n}</button>`).join(" ")}</div><button class="btn ghost" style="padding:2px 8px" onclick="rmSkill(${i})" aria-label="Remove">×</button>`;el.appendChild(r)});updSummary()}
+function setLvl(i,n){state.skills[i][1]=n;renderSkills()}
+function rmSkill(i){state.skills.splice(i,1);renderSkills()}
+function addSkill(){const v=$("newSkill").value.trim();if(!v)return;state.skills.push([v,2]);$("newSkill").value="";renderSkills()}
+function renderWeek(){const el=$("week");const days=["Mon","Tue","Wed","Thu","Fri"];el.innerHTML='<div></div>'+days.map(d=>`<div class="h">${d}</div>`).join("");
+  [["AM","8–12"],["PM","1–5"]].forEach(([p,lbl])=>{el.insertAdjacentHTML("beforeend",`<div class="t">${lbl}</div>`);days.forEach(d=>{const k=d+"-"+p;const s=document.createElement("div");s.className="slot"+(state.slots.has(k)?" on":"");s.title=k;s.onclick=()=>{state.slots.has(k)?state.slots.delete(k):state.slots.add(k);s.classList.toggle("on");updSummary()};el.appendChild(s)})})}
+function updSummary(){const p=+$("pct").value;$("pctOut").textContent=p+"%";$("pctHrs").textContent=`≈ ${Math.round(p*0.4)} hours / week of a 40-hour week`;
+  $("summary").innerHTML=`<dt>Employee</dt><dd>${$("pName").value}</dd><dt>Supervisor</dt><dd>${$("pSup").value}</dd><dt>Capacity</dt><dd>${p}% (≈${Math.round(p*0.4)} hrs/wk)</dd><dt>Windows</dt><dd>${state.slots.size} half-day blocks / week (${$("pTz").value})</dd><dt>Travel</dt><dd>${TRAVEL[+$("pTravel").value]}</dd><dt>Experience</dt><dd>${[...state.seg].join(", ")||"—"}<br>${[...state.txn].join(", ")||"—"}</dd><dt>Work style</dt><dd>${[...state.styles].join(", ")||"—"}</dd><dt>Dates</dt><dd>${$("dFrom").value} → ${$("dTo").value}</dd><dt>Skills</dt><dd>${state.skills.length} listed · ${state.sys.size} systems</dd><dt>Resume</dt><dd>${state.resume||"Not uploaded"}</dd><dt>Engagements</dt><dd>${[...state.types].map(t=>t.split(" (")[0]).join(", ")||"None selected"} · ${wkLabel(+$("pMaxWk").value)}</dd><dt>Annual pay</dt><dd>$68,000 (HRIS)</dd><dt>Chargeback</dt><dd>${p}% of salary to the borrowing cost center</dd>`;
+  const st=$("profSteps").children;const done=[!!$("pName").value&&!!state.resume,state.skills.length>0&&state.sys.size>0,state.slots.size>0];
+  [0,1,2].forEach(i=>{st[i].className="step"+(done[i]?" done":(i===done.indexOf(false)?" cur":""));st[i].lastChild.textContent=done[i]?"Complete":"In progress"});
+  st[3].className="step"+(state.myStatus==="approved"?" done":state.myStatus==="pending"?" cur":"");st[3].lastChild.textContent=state.myStatus==="approved"?"Approved":state.myStatus==="pending"?"Awaiting supervisor":"Not submitted"}
+$("pct").oninput=updSummary;["pName","pSup","dFrom","dTo"].forEach(i=>$(i).oninput=updSummary);
+$("resume").onchange=e=>{const f=e.target.files[0];if(f){state.resume=f.name;$("drop").textContent="✓ "+f.name;$("drop").classList.add("has");updSummary()}};
+function submitProfile(){if(!state.resume){toast("Upload a resume first (any PDF works for the demo)");return}
+  if(!$("att1").checked||!$("att2").checked){toast("Please confirm both statements");return}
+  const m=people.find(p=>p.id==="mr");m.status="pending";m.pct=+$("pct").value;m.skills=state.skills.map(s=>s[0]);m.sys=[...state.sys];m.note=$("pNote").value;m.about=$("pNote").value;m.tz=$("pTz").value;m.travel=+$("pTravel").value;m.styles=[...state.styles];m.seg=[...state.seg];m.txn=[...state.txn];m.styleNote=$("pStyleNote").value;m.slots=[...state.slots];m.eng=[...state.types].map(t=>t.split(" (")[0]);m.maxWk=+$("pMaxWk").value;
+  state.myStatus="pending";setMyStatus();renderQueue();updSummary();toast("Sent to David Chen for approval");$("submitBtn").disabled=true}
+function setMyStatus(){const b=$("myStatus");const map={draft:["b-draft","Draft"],pending:["b-pend","Awaiting supervisor"],approved:["b-ok","Approved — searchable by area managers and above"],declined:["b-no","Returned by supervisor"]};b.className="badge "+map[state.myStatus][0];b.textContent=map[state.myStatus][1]}
+
+function renderQueue(){const q=$("queue");const pend=people.filter(p=>p.status==="pending");$("pendCount").textContent=pend.length;
+  q.innerHTML=pend.length?"":'<div class="card empty">No requests waiting. You\'re all caught up.</div>';
+  pend.forEach(p=>{const d=document.createElement("div");d.className="req";d.innerHTML=`<div class="req-top"><div class="avatar">${p.name.split(" ").map(x=>x[0]).join("")}</div><div class="who"><b>${p.name}</b><span>${p.role} · requests ${p.pct}% (≈${Math.round(p.pct*.4)} hrs/wk) · ${p.from} – ${p.to}<br>Open to ${(p.eng||[]).join(", ")} · ${wkLabel(p.maxWk||13)}</span></div><span class="badge b-pend">Pending</span></div>
+  <div class="tagline">${p.skills.map(s=>`<span class="tag">${s}</span>`).join("")}</div><p class="mini" style="margin:0">“${p.note||""}”</p>
+  <div class="actions" style="justify-content:flex-start"><button class="btn green" onclick="openApprove('${p.id}')">Review &amp; approve</button><button class="btn red" onclick="decide('${p.id}',false)">Decline</button></div>
+  <div class="approve-box" id="ab-${p.id}"><div class="row"><div><label>Approved cap (% of week)</label><select id="cap-${p.id}">${[10,15,20,25,30,40,50].map(v=>`<option ${v===p.pct?"selected":""}>${v}</option>`).join("")}</select></div><div><label>Approval expires</label><input type="date" value="2027-01-31"></div></div>
+  <div class="attest"><input type="checkbox" id="sa-${p.id}"><span>I confirm this is authorized spare capacity and my team's service levels are covered.</span></div>
+  <div class="actions" style="justify-content:flex-start"><button class="btn green" onclick="decide('${p.id}',true)">Sign off</button></div></div>`;q.appendChild(d)});
+  $("teamTbl").innerHTML=people.filter(p=>["mr","jk","lt","aw"].includes(p.id)).map(p=>{const m={none:["b-draft","Not listed"],pending:["b-pend","Pending"],approved:["b-ok","Approved"],declined:["b-no","Declined"]}[p.status];return `<tr><td>${p.name}</td><td>${p.status==="approved"?p.pct+"%":"—"}</td><td><span class="badge ${m[0]}">${m[1]}</span></td></tr>`}).join("")}
+function openApprove(id){$("ab-"+id).classList.toggle("open")}
+function decide(id,ok){const p=people.find(x=>x.id===id);if(ok){if(!$("sa-"+id).checked){toast("Please confirm the attestation");return}p.pct=+$("cap-"+id).value;p.status="approved"}else p.status="declined";
+  if(id==="mr"){state.myStatus=p.status;setMyStatus();updSummary()}renderQueue();toast(ok?`${p.name} approved at ${p.pct}% — now searchable by area managers and above`:`${p.name} declined`)}
+
+const fSys=new Set(),fSeg=new Set(),fTxn=new Set();
+function renderIdp(){ $("idpUsers").innerHTML=USERS.map(u=>{const ok=u.hr||u.level>=2;return `<button class="idp" onclick="ssoLogin('${u.id}')"><div class="avatar" style="background:${ok?"var(--navy-2)":"var(--muted)"}">${u.name.split(" ").map(x=>x[0]).join("")}</div><div><b>${u.name}</b><span>${u.title}</span></div><span class="lvlpill ${ok?"b-ok":"b-no"}">${u.hr?"HR":LEVELS[u.level]}</span></button>`}).join("") }
+function ssoLogin(id){const u=USERS.find(x=>x.id===id);$("idpList").style.display="none";$("idpDenied").style.display="none";$("idpBusy").style.display="block";
+  setTimeout(()=>{$("idpBusy").style.display="none";
+    if(u.hr||u.level>=2){session=u;showSearch();toast("Now viewing as "+u.name)}
+    else{$("idpDenied").style.display="block";$("idpDenied").innerHTML=`<div class="denied"><b>Access restricted</b><p style="margin:6px 0 0">${u.name} is signed in as a <b>${LEVELS[u.level]}</b>. Searching employee profiles requires area manager level or above, or HR.</p></div>
+      <div class="card" style="margin-top:14px"><h2>Need help for your team?</h2><p class="mini">Send a request to your area manager, ${u.manager}. They can search and borrow on your behalf.</p>
+      <label>What do you need?</label><textarea rows="2">PTO coverage: closing support, ~12 hrs/week for 3 weeks from Dec 14. Needs closing/settlement platform.</textarea>
+      <div class="actions"><button class="btn ghost" onclick="ssoReset()">Choose a different demo user</button><button class="btn" onclick="toast('Request sent to ${u.manager.split(" (")[0]}');this.disabled=true">Send to area manager</button></div></div>`}
+    go("ops")},900)}
+function ssoReset(){session=null;$("searchApp").style.display="none";$("ssoGate").style.display="block";$("idpList").style.display="block";$("idpDenied").style.display="none";go("ops")}
+function showSearch(){$("ssoGate").style.display="none";$("searchApp").style.display="block";
+  $("sessionBar").innerHTML=`Demo user: <b>${session.name}</b> · ${session.hr?"HR":LEVELS[session.level]} · in production, access is via company SSO and searches are logged <button class="btn ghost" onclick="ssoReset()">Change user</button>`;runSearch()}
+function fillFilters(){const all=people;const uniq=a=>[...new Set(a)].sort();
+  uniq(all.flatMap(p=>p.skills)).forEach(s=>$("fSkill").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+  uniq(all.map(p=>p.region)).forEach(s=>$("fRegion").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+  uniq(all.map(p=>p.state)).forEach(s=>$("fState").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+  ENG.forEach(e=>$("fEng").insertAdjacentHTML("beforeend",`<option value="${e[0]}">${e[0]} (${e[1]})</option>`));
+  STYLES.forEach(s=>$("fStyle").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+  uniq(all.flatMap(p=>p.lic)).forEach(s=>$("fLic").insertAdjacentHTML("beforeend",`<option>${s}</option>`));
+  chips($("fSys"),SYS,fSys,runSearch);chips($("fSeg"),SEGS,fSeg,runSearch);chips($("fTxn"),TXNS,fTxn,runSearch);
+  ["fSkill","fPct","fRegion","fState","fLic","sortBy","fEng","fLen","fTz","fTravel","fStyle"].forEach(i=>$(i).onchange=runSearch);["fPayMin","fPayMax"].forEach(i=>$(i).oninput=runSearch);$("q").oninput=runSearch}
+function clearFilters(){$("q").value="";["fSkill","fRegion","fState","fLic","fEng","fPayMin","fPayMax","fTz","fStyle"].forEach(i=>$(i).value="");$("fTravel").value="0";$("fPct").value="0";$("fLen").value="0";fSys.clear();fSeg.clear();fTxn.clear();chips($("fSys"),SYS,fSys,runSearch);chips($("fSeg"),SEGS,fSeg,runSearch);chips($("fTxn"),TXNS,fTxn,runSearch);runSearch()}
+function runSearch(){if(!session)return;const q=$("q").value.trim().toLowerCase(),sk=$("fSkill").value,mp=+$("fPct").value,rg=$("fRegion").value,st=$("fState").value,lc=$("fLic").value,eg=$("fEng").value,ln=+$("fLen").value,pmin=+$("fPayMin").value||0,pmax=+$("fPayMax").value||Infinity,tz=$("fTz").value,tv=+$("fTravel").value,sy=$("fStyle").value;
+  let res=people.filter(p=>p.status==="approved").filter(p=>{
+    const hay=[p.name,p.role,p.team,p.area,p.state,...p.skills,...p.sys,...p.lic,...p.eng,...(p.styles||[]),...(p.seg||[]),...(p.txn||[]),p.about||"",p.styleNote||"",TRAVEL[p.travel||0]].join(" ").toLowerCase();
+    if(q&&!q.split(/\s+/).every(w=>hay.includes(w)))return false;
+    if(sk&&!p.skills.includes(sk))return false; if(p.pct<mp)return false; if(rg&&p.region!==rg)return false; if(st&&p.state!==st)return false; if(lc&&!p.lic.includes(lc))return false; if(eg&&!p.eng.includes(eg))return false; if(ln&&p.maxWk<ln)return false; if(p.salary<pmin||p.salary>pmax)return false; if(tz&&p.tz!==tz)return false; if((p.travel||0)<tv)return false; if(sy&&!(p.styles||[]).includes(sy))return false; if([...fSeg].some(x=>!(p.seg||[]).includes(x)))return false; if([...fTxn].some(x=>!(p.txn||[]).includes(x)))return false;
+    if([...fSys].some(x=>!p.sys.includes(x)))return false; return true}).map(p=>{
+    let s=60; if(eg)s+=6;if(ln)s+=4;if(sk&&p.skills[0]===sk)s+=20;else if(sk)s+=12; if(q)s+=10; s+=Math.min(p.sys.length,4)*3; if(fSys.size)s+=8; s+=Math.round(p.pct/10);
+    return {...p,score:Math.min(s,99)}});
+  const sb=$("sortBy").value; res.sort((a,b)=>sb==="pct"?b.pct-a.pct:sb==="cost"?chargeMo(a)-chargeMo(b):sb==="payLo"?a.salary-b.salary:sb==="payHi"?b.salary-a.salary:sb==="len"?b.maxWk-a.maxWk:sb==="travel"?(b.travel||0)-(a.travel||0):b.score-a.score);
+  const hrs=res.reduce((a,p)=>a+Math.round(p.pct*.4),0);
+  $("resCount").textContent=res.length?`${res.length} approved colleague${res.length>1?"s":""} · ${hrs} hrs/week available in total · enterprise-wide`:"";
+  $("results").innerHTML=res.length?res.map(p=>`<div class="cand"><div class="cand-top">
+    <div class="score" style="background:${p.score>=80?"var(--green)":p.score>=70?"var(--blue)":"var(--amber)"}">${p.score}</div>
+    <div class="info"><b>${p.name}</b> <span class="mini">· ${p.role}</span><div class="mini">${p.team} · 📍 ${p.area}, ${p.state} · ${p.region} · ✈ ${TRAVEL[p.travel||0]}</div>
+      <div class="mini">Approved for up to <b>${p.pct}%</b> (≈${Math.round(p.pct*.4)} hrs/wk) · ${p.from} – ${p.to} · supervisor signed off</div>
+      <div class="mini">Open to: <span style="font-weight:700;color:var(--ink)">${p.eng.map(engLabel).join(" · ")}</span> · longest engagement ${wkLabel(p.maxWk)}</div>
+      <div class="mini">Experience: <span style="font-weight:700;color:var(--ink)">${(p.seg||[]).join(" · ")}</span> — ${(p.txn||[]).join(", ")}</div>
+      <div class="mini">Usually free (<span style="font-weight:700;color:var(--ink)">${p.tz}</span>): ${slotTxt(p.slots)}</div>
+      ${p.about?`<p class="mini" style="margin:8px 0 0;font-style:italic;color:var(--ink)">“${p.about}”</p>`:""}
+      <div class="tagline">${(p.styles||[]).map(s=>`<span class="tag" style="background:#F3EEFA;color:#4B2E83">${s}</span>`).join("")}</div>
+      <div class="tagline">${p.skills.map(s=>`<span class="tag">${s}</span>`).join("")}${p.sys.map(s=>`<span class="tag" style="background:#EEF1F5">${s}</span>`).join("")}${p.lic.map(s=>`<span class="tag" style="background:var(--green-soft);color:#155D3C">${s}</span>`).join("")}</div></div>
+    <div class="cost">Annual pay rate<b>${fmt$(p.salary)}</b><span style="display:block;margin-top:6px">Chargeback at ${p.pct}%: <b style="display:inline;font-size:14px">${fmt$(chargeMo(p))}/mo</b></span></div></div>
+    <div class="actions" style="margin-top:10px"><button class="btn ghost" onclick="toast('Opening resume (demo)')">View resume</button><button class="btn" onclick="$('rf-${p.id}').classList.toggle('open')">Request to borrow</button></div>
+    <div class="req-form" id="rf-${p.id}"><div class="row"><div><label>% of time requested (max ${p.pct}%)</label><select id="rp-${p.id}" onchange="$('rc-${p.id}').textContent=fmt$(Math.round(${p.salary}*this.value/100/12/10)*10)+' / month'">${[5,10,15,20,25,30,35,40].filter(v=>v<=p.pct).map(v=>`<option ${v===p.pct?"selected":""}>${v}</option>`).join("")}</select></div>
+      <div><label>Charge to cost center</label><input type="text" value="${session.cc}"></div></div>
+      <div class="row"><div><label>Engagement type</label><select>${p.eng.map(e=>`<option ${e===$("fEng").value?"selected":""}>${engLabel(e)}</option>`).join("")}</select></div><div><label>Length (max ${wkLabel(p.maxWk)})</label><select>${[[2,"2 weeks"],[4,"1 month"],[8,"2 months"],[13,"3 months"],[26,"6 months"],[52,"12 months"]].filter(x=>x[0]<=p.maxWk).map(x=>`<option>${x[1]}</option>`).join("")}</select></div></div>
+      <div class="row"><div><label>Start</label><input type="date" value="2026-11-09"></div><div><label>End</label><input type="date" value="2026-12-31"></div></div>
+      <p class="mini" style="margin:10px 0 0">Chargeback: <b id="rc-${p.id}">${fmt$(chargeMo(p))} / month</b>, credited to ${p.team}, ${p.area}.</p>
+      <div class="actions"><button class="btn" onclick="this.disabled=true;this.textContent='Request sent';toast('Request sent to ${p.name} and their supervisor to confirm')">Send request</button></div></div>
+  </div>`).join(""):'<div class="card empty">No approved colleagues match. Try removing a filter.</div>'}
+
+function renderDash(){const flows=[["Commercial Services — NYC",3400],["Closing & Settlement — Northeast",2500],["Policy Production — Central",2150],["Default / REO services",1550],["Agency Operations",1200]];const mx=3400;
+  $("flowTbl").innerHTML=flows.map(([n,v])=>`<tr><td style="width:55%">${n}</td><td><div class="bar"><i style="width:${v/mx*100}%"></i></div></td><td style="text-align:right;width:60px">${v.toLocaleString()}</td></tr>`).join("");
+  const sk=[["Commercial title exam",38],["Closing / settlement support",27],["Policy typing",21],["Curative & clearance",18],["Recording & post-closing",12]];
+  $("skillTbl").innerHTML=sk.map(([n,v])=>`<tr><td style="width:55%">${n}</td><td><div class="bar"><i style="width:${v/38*100}%;background:var(--navy-2)"></i></div></td><td style="text-align:right;width:60px">${v} req</td></tr>`).join("")}
+
+chips($("sysChips"),SYS,state.sys,updSummary);chips($("licChips"),LIC,state.lic);chips($("typeChips"),TYPES,state.types,updSummary);$("pMaxWk").onchange=updSummary;chips($("styleChips"),STYLES,state.styles,updSummary);chips($("segChips"),SEGS,state.seg,updSummary);chips($("txnChips"),TXNS,state.txn,updSummary);$("pTravel").onchange=updSummary;$("pTz").onchange=()=>{$("tzLbl").textContent=$("pTz").value;updSummary()};renderIdp();fillFilters();if(window.innerWidth<900)$("filtersBox").removeAttribute("open");
+renderSkills();renderWeek();updSummary();renderQueue();renderDash();setMyStatus();
+</script>
+</body>
+</html>
