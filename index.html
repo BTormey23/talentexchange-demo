@@ -145,63 +145,645 @@ td{padding:10px 8px;border-bottom:1px solid var(--line)}
 .resultbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .resultbar .mini{flex:1}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+/* ---------- v4: two-level nav ---------- */
+nav.primary{background:var(--navy-2)}
+.tab.demo-tab{color:#fff}
+.tab.demo-tab .pill{background:var(--blue);border-radius:10px;padding:1px 8px;font-size:12px;margin-left:6px}
+nav.subnav{background:#fff;border-bottom:1px solid var(--line);display:none}
+nav.subnav.show{display:block}
+.subtabs{max-width:1200px;margin:0 auto;display:flex;gap:2px;padding:0 20px;overflow-x:auto;align-items:center}
+.stab{background:none;border:0;color:var(--muted);padding:10px 12px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-weight:600;font-size:14px}
+.stab.active{color:var(--navy);border-bottom-color:var(--blue)}
+.stab .count{background:var(--blue);color:#fff;border-radius:10px;padding:0 7px;font-size:12px;margin-left:6px}
+.stab .lock{font-size:11px;margin-left:4px}
+.user.hidden{visibility:hidden}
+.brand{cursor:pointer}
+/* ---------- marketing ---------- */
+.mk h1{color:inherit}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
+.kicker.dark{color:var(--blue)}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center;background:linear-gradient(135deg,#0B2545 0%,#13315C 60%,#1d4a85 100%);color:#fff;border-radius:16px;padding:44px 40px;margin-bottom:22px}
+.hero-light{background:linear-gradient(135deg,#EAF2FB 0%,#F7FAFE 100%);color:var(--ink);border:1px solid var(--line)}
+.hero-h{font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.01em;font-weight:700}
+.hero-light .hero-h{color:var(--navy)}
+.hero-sub{font-size:18px;line-height:1.5;margin:0 0 22px;color:#D5E2F3}
+.hero-light .hero-sub{color:var(--ink)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-lg{padding:13px 22px;font-size:16px;border-radius:8px;text-decoration:none;display:inline-block}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff}
+.btn-outline.dark{border-color:var(--navy);color:var(--navy)}
+.btn-ghost2{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.hero-card{background:#fff;color:var(--ink);border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.hc-head{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.hc-dot{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.hc-need{margin:10px 0 14px;padding:10px 12px;background:var(--amber-soft);border-radius:8px}
+.hc-need b{display:block;color:var(--navy);font-size:17px}.hc-need span{font-size:13px;color:#7a5410}
+.hc-label{font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px}
+.hc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.hc-row div{flex:1}.hc-row b{display:block;font-size:14px;color:var(--navy)}.hc-row div span{font-size:12px;color:var(--muted)}
+.hc-av{width:32px;height:32px;border-radius:50%;background:var(--navy-2);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.hc-row em{font-style:normal;font-weight:700;color:#fff;background:var(--green);border-radius:14px;padding:3px 9px;font-size:13px}
+.hc-foot{margin-top:10px;font-size:12px;color:var(--muted);background:var(--bg);border-radius:8px;padding:8px 10px}
+.statstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.statstrip div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.statstrip b{display:block;font-size:28px;color:var(--navy);line-height:1.1}
+.statstrip span{font-size:13px;color:var(--muted)}
+.fineprint{font-size:12px;color:var(--muted);margin:8px 0 0}
+.hero .fineprint{color:#b9c9de}
+.mk-sec{margin:44px 0}
+.mk-h{font-size:30px;line-height:1.15;color:var(--navy);margin:0 0 10px;letter-spacing:-.005em}
+.mk-lead{font-size:17px;color:var(--muted);max-width:780px;margin:0 0 22px}
+.mk-cards .mk-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.mk-card h3{font-size:17px;color:var(--navy);margin:10px 0 6px}
+.mk-card p{margin:0;color:var(--ink);font-size:15px}
+.mk-card.sm h3{font-size:16px}.mk-card.sm p{font-size:14px;color:var(--muted)}
+.mk-card .ic{width:40px;height:40px;padding:9px;border-radius:10px;background:var(--blue-soft);color:var(--blue)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.ticks{list-style:none;padding:0;margin:0}
+.ticks li{position:relative;padding:0 0 12px 30px;font-size:15px}
+.ticks li:before{content:"";position:absolute;left:0;top:2px;width:18px;height:18px;border-radius:50%;background:var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E8E5A' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat}
+.flow{list-style:none;margin:0;padding:0;position:relative}
+.flow li{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;font-size:14px;color:var(--muted)}
+.flow li span{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700}
+.flow li b{display:block;color:var(--navy);font-size:15px}
+.arch{display:grid;grid-template-columns:1fr auto 1.1fr auto 1fr;gap:12px;align-items:center;margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.arch-side{display:grid;gap:10px}
+.arch-box{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:700;color:var(--navy);background:var(--bg)}
+.arch-box span,.arch-core span{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.arch-core{background:var(--navy);color:#fff;border-radius:12px;padding:22px;text-align:center;font-weight:700;font-size:18px}
+.arch-core span{color:var(--sky);margin-top:4px}
+.arch-arrow{font-size:24px;color:var(--blue);font-weight:700;text-align:center}
+.aud-card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .15s,box-shadow .15s}
+.aud-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(11,37,69,.12);border-color:var(--sky)}
+.aud-card small{display:block;margin-top:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.aud-card h3{font-size:20px;color:var(--navy);margin:4px 0 8px}
+.aud-card p{margin:0 0 14px;color:var(--muted)}
+.aud-go{font-weight:700;color:var(--blue)}
+.aud-card .ic{width:44px;height:44px;padding:10px;border-radius:12px;background:var(--navy);color:#fff}
+.band{background:var(--navy);color:#fff;border-radius:16px;padding:32px;margin:44px 0}
+.band h2{color:#fff;font-size:24px;margin:0 0 16px}
+.guard div{background:rgba(255,255,255,.07);border-radius:10px;padding:14px;font-size:14px;color:#C9D6E8}
+.guard b{display:block;color:#fff;font-size:15px;margin-bottom:4px}
+.cta-band{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--blue-soft);border:1px solid #cfe0f3;border-radius:16px;padding:26px 30px;margin:44px 0 10px}
+.cta-band h2{margin:0 0 4px;font-size:22px}.cta-band p{margin:0;color:var(--muted)}
+.quote-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 12px 30px rgba(11,37,69,.08)}
+.quote-card p{font-size:17px;line-height:1.55;margin:0 0 12px;color:var(--navy)}
+.quote-card span{font-size:13px;color:var(--muted)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.steps4 div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:14px;color:var(--muted);position:relative}
+.steps4 span{display:inline-block;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:12px;border-radius:10px;padding:2px 9px;margin-bottom:8px}
+.steps4 b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+.faq h3{color:var(--navy);margin:0 0 10px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.faq summary{cursor:pointer;font-weight:700;color:var(--navy)}
+.faq details p{margin:8px 0 0;color:var(--ink);font-size:14px}
+.faq em,.ticks em{color:var(--amber);font-style:normal;font-weight:600}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg a{padding:9px 14px;border-radius:7px;text-decoration:none;color:var(--navy);font-weight:700}
+.seg a:hover{background:var(--blue-soft)}
+.vs-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 12px 30px rgba(11,37,69,.08)}
+.vs-card h3{margin:0 0 10px;color:var(--navy)}
+.vs-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.vs-row.head{border-top:0;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.vs-row span{color:var(--muted)}.vs-row b{color:var(--ink);font-weight:600}
+.vs-row b.win{color:var(--green);font-weight:700}
+.two-col{display:grid;grid-template-columns:150px 1fr;gap:26px}
+.side-tag{border-radius:12px;padding:16px;font-size:13px;color:var(--muted);height:max-content;position:sticky;top:12px}
+.side-tag b{display:block;font-size:24px}
+.side-tag.lend{background:var(--green-soft)}.side-tag.lend b{color:var(--green)}
+.side-tag.borrow{background:var(--amber-soft)}.side-tag.borrow b{color:var(--amber)}
+.pl-card{background:#fff;color:var(--ink);border-radius:14px;padding:22px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.pl-card h3{margin:0 0 14px;color:var(--navy);font-size:16px}
+.pl-card p{font-size:13px;color:var(--muted);margin:12px 0 0}
+.pl-row,.roi-bars>div{display:grid;grid-template-columns:120px 1fr auto;gap:10px;align-items:center;margin-bottom:10px;font-size:13px}
+.pl-row b,.roi-bars b{font-size:13px;color:var(--navy);white-space:nowrap}
+.pl-bar{height:12px;background:var(--bg);border-radius:6px;overflow:hidden}
+.pl-bar i{display:block;height:100%;background:var(--amber);border-radius:6px}
+.pl-bar i.g{background:var(--green)}.pl-bar i.z{background:var(--blue)}
+.roi-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.roi-in label{display:flex;justify-content:space-between;gap:10px;margin:14px 0 6px;font-size:14px}
+.roi-in label:first-child{margin-top:0}
+.roi-in output{color:var(--blue);font-weight:700}
+.roi-in input[type=range]{width:100%;accent-color:var(--blue)}
+.roi-big{background:var(--navy);color:#fff;border-radius:12px;padding:20px}
+.roi-big span{font-size:13px;color:var(--sky);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.roi-big b{display:block;font-size:46px;line-height:1.1;margin:4px 0}
+.roi-big em{font-style:normal;color:#C9D6E8;font-size:14px}
+.roi-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+.roi-kpis div{background:var(--bg);border-radius:10px;padding:12px}
+.roi-kpis b{display:block;font-size:22px;color:var(--navy)}.roi-kpis span{font-size:12px;color:var(--muted)}
+.roi-bars>div{grid-template-columns:200px 1fr 80px}
+.roi-bars i{transition:width .25s}
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px}
+.gov td{vertical-align:top}.gov td:first-child{font-weight:700;color:var(--navy);width:28%}.gov td:last-child{white-space:nowrap;color:var(--muted)}
+.pilot{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pilot div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:14px;color:var(--muted)}
+.pilot span{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.pilot b{display:block;font-size:18px;color:var(--navy);margin:4px 0 6px}
+/* ---------- demo start ---------- */
+.tour{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.tour button{text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;font-size:13px;color:var(--muted)}
+.tour button:hover{border-color:var(--blue);box-shadow:0 8px 20px rgba(11,107,203,.12)}
+.tour span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;margin-bottom:8px}
+.tour b{display:block;color:var(--navy);font-size:15px;margin-bottom:4px}
+/* ---------- engagements ---------- */
+.eng{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.eng-top{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.eng-top .avatar{background:var(--navy-2);color:#fff;flex:none}
+.eng-top .who{flex:1;min-width:200px}.eng-top .who b{color:var(--navy);font-size:16px}
+.eng-prog{margin:12px 0 6px}
+.eng-prog .bar{height:10px}
+.eng-meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.eng-meta b{color:var(--ink)}
+.verified{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.vbadge{display:inline-flex;align-items:center;gap:4px;background:#EAF6EF;color:#14653F;border:1px solid #BFE3CF;border-radius:12px;padding:2px 9px;font-size:12px;font-weight:700}
+.b-blue{background:var(--blue-soft);color:var(--blue)}
+/* ---------- modal ---------- */
+.modal-bg{position:fixed;inset:0;background:rgba(11,37,69,.55);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.modal-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.modal-h b{flex:1;color:var(--navy)}
+.modal-h button{background:none;border:0;font-size:22px;cursor:pointer;color:var(--muted);line-height:1}
+.modal-b{padding:18px}
+.notif{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.notif-src{background:#F3F2F1;padding:8px 12px;font-size:12px;color:#605E5C;display:flex;gap:8px;align-items:center}
+.notif-src i{width:18px;height:18px;border-radius:4px;background:#5B5FC7;display:inline-block}
+.notif-body{padding:14px}
+.notif-body h4{margin:0 0 6px;color:var(--navy);font-size:16px}
+.checkin-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.checkin-row:first-of-type{border-top:0}
+/* ---------- responsive ---------- */
+@media(max-width:1000px){.g5{grid-template-columns:repeat(2,1fr)}.tour{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:28px 22px;gap:22px}
+  .hero-h{font-size:32px}.hero-sub{font-size:16px}
+  .statstrip,.steps4,.pilot,.g4{grid-template-columns:1fr 1fr}
+  .split,.roi-grid,.two-col{grid-template-columns:1fr}
+  .side-tag{position:static}
+  .arch{grid-template-columns:1fr}.arch-arrow{transform:rotate(90deg)}
+  .mk-h{font-size:24px}
+  .roi-bars>div{grid-template-columns:1fr 80px}.roi-bars .pl-bar{grid-column:1/-1;order:3}
+}
+@media(max-width:560px){
+  .statstrip,.steps4,.pilot,.g4,.g5,.tour{grid-template-columns:1fr}
+  .statstrip b{font-size:24px}
+  .roi-big b{font-size:36px}
+  .band,.cta-band{padding:22px}
+}
+
+.toast{visibility:hidden}.toast.show{visibility:visible}
+
+@media(max-width:560px){.grid.g4:has(.stat){grid-template-columns:1fr 1fr;gap:10px}.stat{padding:12px}.stat b{font-size:22px}}
 </style>
 </head>
 <body>
 <div class="demo-banner">Concept demo — fictional people and figures. Not a live system; nothing you enter is saved. Have thoughts? Use the Feedback tab.</div>
 <header>
   <div class="topbar">
-    <div class="brand">FA Demo <small>TALENT EXCHANGE</small></div>
-    <div class="user"><span id="roleLabel">Viewing as: Employee</span><div class="avatar" id="avatarInit">MR</div></div>
+    <div class="brand" onclick="go('home')">Company Name <small>TALENT EXCHANGE</small></div>
+    <div class="user hidden" id="userBox"><span id="roleLabel">Viewing as: Employee</span><div class="avatar" id="avatarInit">MR</div></div>
   </div>
-  <nav><div class="tabs">
+  <nav class="primary"><div class="tabs">
     <button class="tab active" data-view="home">Overview</button>
-    <button class="tab" data-view="profile">My Profile &amp; Availability</button>
-    <button class="tab" data-view="supervisor">Supervisor Approvals <span class="count" id="pendCount">2</span></button>
-    <button class="tab" data-view="ops">Find Talent<span class="lock">🔒 SSO</span></button>
-    <button class="tab" data-view="dash">Program Dashboard</button>
+    <button class="tab" data-view="employees">For Employees</button>
+    <button class="tab" data-view="managers">For Managers</button>
+    <button class="tab" data-view="executives">For Executives</button>
+    <button class="tab demo-tab" data-view="demo">Live Demo<span class="pill">Try it</span></button>
     <button class="tab" data-view="feedback">Feedback</button>
+  </div></nav>
+  <nav class="subnav" id="subnav"><div class="subtabs">
+    <button class="stab" data-view="demo">Start here</button>
+    <button class="stab" data-view="profile">My Profile</button>
+    <button class="stab" data-view="supervisor">Supervisor Approvals<span class="count" id="pendCount">2</span></button>
+    <button class="stab" data-view="ops">Find Talent<span class="lock">🔒</span></button>
+    <button class="stab" data-view="eng">Engagements<span class="count" id="engCount">0</span></button>
+    <button class="stab" data-view="dash">Dashboard</button>
   </div></nav>
 </header>
 
 <main>
-<!-- OVERVIEW -->
-<section class="view active" id="home">
-  <h1>Share capacity across the enterprise</h1>
-  <p class="sub">Employees with authorized spare capacity list their skills and hours. Teams facing a volume surge borrow trained, onboarded colleagues instead of opening a new-hire req. The borrowing team pays the same share of salary as the share of time borrowed.</p>
-  <div class="grid g4">
-    <div class="card"><h2>1 · Create profile</h2><p class="mini">Resume, systems you know, and skill levels.</p></div>
-    <div class="card"><h2>2 · Set availability</h2><p class="mini">Weekly time windows, share of your week, and the engagements you'll take: PTO coverage, seasonal surge, or customer/project surge.</p></div>
-    <div class="card"><h2>3 · Supervisor sign-off</h2><p class="mini">Your direct supervisor approves the hours, cap and end date.</p></div>
-    <div class="card"><h2>4 · Get matched</h2><p class="mini">Area managers and above search by skill and system after SSO sign-in. The borrowing cost center pays the same % of your salary as the % of time borrowed.</p></div>
+<!-- ===================== OVERVIEW ===================== -->
+<section class="view active mk" id="home">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Internal talent marketplace · concept</div>
+      <h1 class="hero-h">Your next surge hire already works here.</h1>
+      <p class="hero-sub">Talent Exchange connects employees who have <b>supervisor-approved spare hours</b> with teams buried in volume. The work gets done by trained, onboarded colleagues in days, instead of new hires in months, and the cost stays inside the company.</p>
+      <div class="hero-cta">
+        <button class="btn btn-lg" onclick="go('demo')">Try the live demo</button>
+        <a class="btn btn-lg btn-outline" href="#audiences" onclick="event.preventDefault();document.getElementById('audiences').scrollIntoView({behavior:'smooth'})">See it for your role</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-label="Example match">
+      <div class="hc-head"><span class="hc-dot"></span>Surge request · Commercial Services, NYC</div>
+      <div class="hc-need"><b>40 hrs/week · 3 months</b><span>Commercial exam · Ignite · Eastern time</span></div>
+      <div class="hc-label">3 approved colleagues match</div>
+      <div class="hc-row"><span class="hc-av">AW</span><div><b>Andre W.</b><span>Senior Examiner · NJ · 25%</span></div><em>94</em></div>
+      <div class="hc-row"><span class="hc-av">MR</span><div><b>Maria R.</b><span>Title Examiner II · NY · 30%</span></div><em>88</em></div>
+      <div class="hc-row"><span class="hc-av">KB</span><div><b>Karen B.</b><span>Commercial Title Officer · PA · 15%</span></div><em>81</em></div>
+      <div class="hc-foot">Covered: 28 of 40 hrs/wk · Chargeback ≈ $4,600/mo · Staffed in 3 days</div>
+    </div>
+  </div>
+
+  <div class="statstrip">
+    <div><b>6–10 wks</b><span>typical time to recruit and ramp a new hire</span></div>
+    <div><b>Days</b><span>to staff with a colleague who already knows the systems</span></div>
+    <div><b>~50%</b><span>of new-hire cost to the borrowing unit, per surge hour</span></div>
+    <div><b>$0</b><span>net new cost to the enterprise: salary moves between cost centers</span></div>
+  </div>
+  <p class="fineprint">Figures are illustrative planning assumptions, to be replaced with Finance and Talent Acquisition data.</p>
+
+  <div class="mk-sec">
+    <div class="kicker dark">The problem</div>
+    <h2 class="mk-h">Volume doesn't move evenly. Our staffing does.</h2>
+    <p class="mk-lead">Rates, seasons, PTO and big portfolio deals hit different teams at different times. In the same week, one team is idle and another is posting a req.</p>
+    <div class="grid g3 mk-cards">
+      <div class="mk-card"><i data-ic="clock"></i><h3>Slow teams carry idle cost</h3><p>When a market cools, trained people sit under-used. The P&amp;L carries them, or we cut and lose the know-how we'll need again in six months.</p></div>
+      <div class="mk-card"><i data-ic="alert"></i><h3>Busy teams hire for peaks</h3><p>A portfolio deal, a seasonal spike or a wave of PTO triggers new-hire reqs that take weeks to fill and ramp. They often arrive after the peak and stay after it ends.</p></div>
+      <div class="mk-card"><i data-ic="layers"></i><h3>Skills are stuck behind walls</h3><p>Expertise sits inside brands, divisions and regions. A manager in Dallas can't see the under-used Ignite expert in Philadelphia.</p></div>
+    </div>
+  </div>
+
+  <div class="mk-sec split">
+    <div>
+      <div class="kicker dark">The fix</div>
+      <h2 class="mk-h">A marketplace for approved spare capacity</h2>
+      <p class="mk-lead">Employees with real spare time list what they know and when they're free. Their supervisor approves how much can be lent and for how long. Leaders facing a surge search across the company, borrow by the hour, and pay the same share of salary as the share of time they use.</p>
+      <ul class="ticks">
+        <li>No new headcount, recruiting fees or onboarding</li>
+        <li>Lending teams recover cost; borrowing teams pay about half the cost of a new hire</li>
+        <li>Employees build skills across divisions and stay visible</li>
+        <li>When the surge ends, people go back to their home team</li>
+      </ul>
+    </div>
+    <ol class="flow">
+      <li><span>1</span><div><b>Employee lists skills and availability</b>Systems, experience, % of week, time windows and time zone, engagement length, travel</div></li>
+      <li><span>2</span><div><b>Supervisor approves</b>Sets the cap and end date. Re-approves every 90 days; the employee reconfirms every 30.</div></li>
+      <li><span>3</span><div><b>Leaders search</b>Area managers and above, plus HR, sign in through company SSO</div></li>
+      <li><span>4</span><div><b>Borrow request</b>Employee and home supervisor confirm; the borrower signs a no-poach agreement</div></li>
+      <li><span>5</span><div><b>Work, chargeback, verified skills</b>Salary share moves monthly; the borrower verifies the skills used at the end</div></li>
+    </ol>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">What the technology is</div>
+    <h2 class="mk-h">Five building blocks on systems we already run</h2>
+    <p class="mk-lead">Talent Exchange is a thin layer over identity, HR and finance systems. It doesn't replace any of them.</p>
+    <div class="grid g5 mk-cards">
+      <div class="mk-card sm"><i data-ic="user"></i><h3>Skills &amp; availability profiles</h3><p>Systems, property and transaction experience, licenses, hours, time zone and working style.</p></div>
+      <div class="mk-card sm"><i data-ic="check"></i><h3>Approval workflow</h3><p>Supervisor sign-off, a hard cap, expiry date, and automatic 30- and 90-day check-ins.</p></div>
+      <div class="mk-card sm"><i data-ic="lock"></i><h3>Permissioned search</h3><p>SSO sign-in; roles from the HR system decide who can search and what they see.</p></div>
+      <div class="mk-card sm"><i data-ic="dollar"></i><h3>Automatic chargeback</h3><p>Salary × % borrowed, posted monthly from borrowing to lending cost center.</p></div>
+      <div class="mk-card sm"><i data-ic="award"></i><h3>Engagement &amp; skills record</h3><p>Every engagement is logged and ends with the borrower verifying skills used.</p></div>
+    </div>
+    <div class="arch">
+      <div class="arch-side"><div class="arch-box">Company SSO<span>who you are</span></div><div class="arch-box">HR system<span>role, reporting line, pay</span></div></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-core">Talent Exchange<span>profiles · approvals · search · engagements</span></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-side"><div class="arch-box">Finance / GL<span>monthly chargeback</span></div><div class="arch-box">Teams &amp; Outlook<span>requests, reminders, approvals</span></div></div>
+    </div>
+    <p class="fineprint">Proposed integrations. The demo simulates them with sample data.</p>
+  </div>
+
+  <div class="mk-sec" id="audiences">
+    <div class="kicker dark">Built for three people</div>
+    <h2 class="mk-h">Everyone in the transaction has a reason to say yes</h2>
+    <div class="grid g3 aud">
+      <a class="aud-card" href="#employees" onclick="event.preventDefault();go('employees')"><i data-ic="trend"></i><small>For employees</small><h3>Turn slow weeks into growth weeks</h3><p>New systems and deal types, a cross-divisional network, and a verified skills record, with your pay unchanged.</p><span class="aud-go">Read the employee pitch →</span></a>
+      <a class="aud-card" href="#managers" onclick="event.preventDefault();go('managers')"><i data-ic="repeat"></i><small>For managers</small><h3>Lend with control. Borrow in days.</h3><p>Recover the cost of idle hours, or staff a surge with trained people at about half the cost of a new hire.</p><span class="aud-go">Read the manager pitch →</span></a>
+      <a class="aud-card" href="#executives" onclick="event.preventDefault();go('executives')"><i data-ic="chart"></i><small>For P&amp;L owners</small><h3>Flex capacity without adding headcount</h3><p>Turn fixed payroll into flexible capacity across the enterprise, and see the savings in an ROI model you can adjust.</p><span class="aud-go">Read the executive pitch →</span></a>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>Guardrails, built in</h2>
+    <div class="grid g3 guard">
+      <div><b>Supervisor in control</b>Nothing is listed without sign-off. Hard cap, end date, recall any time.</div>
+      <div><b>Always current</b>Employees reconfirm every 30 days; supervisors re-approve every 90. Lapsed listings leave search.</div>
+      <div><b>Restricted visibility</b>Only area managers and above, plus HR, can search, through SSO.</div>
+      <div><b>No poaching</b>Borrowers agree not to recruit borrowed people. Permanent moves are opt-in only.</div>
+      <div><b>Fair chargeback</b>Salary × % borrowed, credited to the home cost center every month.</div>
+      <div><b>Home team first</b>The employee's home team keeps first call; the employee confirms every request.</div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div><h2>See it working</h2><p>Walk through it as an employee, a supervisor and an area manager. Every person and number is fictional.</p></div>
+    <div class="hero-cta"><button class="btn btn-lg" onclick="go('demo')">Open the demo</button><button class="btn btn-lg btn-ghost2" onclick="go('feedback')">Share feedback</button></div>
+  </div>
+</section>
+
+<!-- ===================== EMPLOYEES ===================== -->
+<section class="view mk" id="employees">
+  <div class="hero hero-light">
+    <div class="hero-copy">
+      <div class="kicker dark">For employees</div>
+      <h1 class="hero-h">Slow week? Make it a growth week.</h1>
+      <p class="hero-sub">When your team's volume dips, Talent Exchange lets you put spare hours to work on another team. You learn new systems, deal types and people, with your supervisor's approval and your pay unchanged.</p>
+      <div class="hero-cta"><button class="btn btn-lg" onclick="go('profile')">Build a sample profile</button><a class="btn btn-lg btn-outline dark" href="#faq-emp" onclick="event.preventDefault();document.getElementById('faq-emp').scrollIntoView({behavior:'smooth'})">Questions people ask</a></div>
+    </div>
+    <div class="quote-card"><p>“Six years in residential exam and I'd never touched a commercial package. Three months lending 30% of my week to Commercial Services, and I came back with two verified skills and a manager who knows my name.”</p><span>Maria R., Title Examiner II · fictional example</span></div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">Sound familiar?</div>
+    <h2 class="mk-h">Spare time shouldn't feel like a warning sign</h2>
+    <div class="grid g4 mk-cards">
+      <div class="mk-card sm"><i data-ic="clock"></i><p>Your queue is light, and you're wondering what that means for you.</p></div>
+      <div class="mk-card sm"><i data-ic="layers"></i><p>You'd like commercial, escrow or ClarityFirst experience, but your team doesn't do that work.</p></div>
+      <div class="mk-card sm"><i data-ic="eye"></i><p>You do great work on a small team, and senior leaders never see it.</p></div>
+      <div class="mk-card sm"><i data-ic="door"></i><p>Growing seems to mean leaving, either the team or the company.</p></div>
+    </div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">What you get</div>
+    <h2 class="mk-h">Paid time to grow, inside the company</h2>
+    <div class="grid g3 mk-cards">
+      <div class="mk-card"><i data-ic="zap"></i><h3>New systems and deal types</h3><p>Learn Ignite, ClarityFirst, commercial packages, split closings or attorney-driven files alongside people who do them every day.</p></div>
+      <div class="mk-card"><i data-ic="users"></i><h3>A cross-divisional network</h3><p>Work with other brands, divisions and regions. Bring back better ways of working, and contacts you'd never have met.</p></div>
+      <div class="mk-card"><i data-ic="award"></i><h3>A verified skills record</h3><p>Each engagement ends with the borrowing manager confirming the skills you used. It goes on your record for reviews and promotion.</p></div>
+      <div class="mk-card"><i data-ic="eye"></i><h3>Seen by senior leaders</h3><p>Area, state and region managers search the Exchange. Your work becomes visible beyond your own team.</p></div>
+      <div class="mk-card"><i data-ic="compass"></i><h3>A path to a permanent move, if you want one</h3><p>Tick "open to a permanent move," with your supervisor's approval, and leaders can find you for the roles you name.</p></div>
+      <div class="mk-card"><i data-ic="shield"></i><h3>Valuable in any market</h3><p>People with cross-company skills are the ones every team wants when volume shifts.</p></div>
+    </div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">How it works for you</div>
+    <h2 class="mk-h">About 15 minutes to get started</h2>
+    <div class="steps4">
+      <div><span>15 min</span><b>Build your profile</b>Resume, systems, experience, hours, time zone and the engagements you'd take.</div>
+      <div><span>1–2 days</span><b>Supervisor approves</b>They set how much of your week can be lent and until when.</div>
+      <div><span>When matched</span><b>You confirm</b>Every request comes to you and your supervisor first. You can say no.</div>
+      <div><span>At the end</span><b>Skills verified</b>The borrowing manager confirms what you did; you go back to your home team.</div>
+    </div>
+  </div>
+
+  <div class="mk-sec split">
+    <div>
+      <div class="kicker dark">You're protected</div>
+      <h2 class="mk-h">Your job, your pay, your choice</h2>
+      <ul class="ticks">
+        <li><b>Your pay, benefits and title don't change.</b> The borrowing team pays your home team, not you.</li>
+        <li><b>You choose.</b> You confirm every request and can decline any of them.</li>
+        <li><b>Home team first.</b> Your supervisor approves and can recall you if volume returns.</li>
+        <li><b>Private by default.</b> Only area managers and above, and HR, can see your profile, after SSO sign-in.</li>
+        <li><b>No poaching.</b> Borrowing managers sign a no-poach agreement. A permanent move only happens if you ask for one.</li>
+        <li><b>Easy to pause.</b> You reconfirm every 30 days and can pause your listing any time.</li>
+      </ul>
+    </div>
+    <div class="faq" id="faq-emp">
+      <h3>Questions people ask</h3>
+      <details><summary>Will I work more hours?</summary><p>No. Borrowed hours come out of your normal week, up to the % your supervisor approves. If you're paid hourly, overtime rules still apply. <em>HR to confirm the policy.</em></p></details>
+      <details><summary>What if I don't like the assignment?</summary><p>Tell your home supervisor. Either side can end an engagement early, and you go back to your home team.</p></details>
+      <details><summary>Who can see my pay rate?</summary><p>Area managers and above, and HR, because chargeback is based on salary. HR may choose to show pay bands instead. <em>HR policy to confirm.</em></p></details>
+      <details><summary>Does this count in my review?</summary><p>Verified skills go on your record. <em>HR decides how reviews and promotion use it.</em></p></details>
+      <details><summary>Can my supervisor say no?</summary><p>Yes. Their team's work comes first, and they know the workload best. You can ask again when volume changes.</p></details>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div><h2>Try it as Maria</h2><p>Fill in a sample profile, set availability, and send it to her supervisor.</p></div>
+    <div class="hero-cta"><button class="btn btn-lg" onclick="go('profile')">Build a sample profile</button></div>
+  </div>
+</section>
+
+<!-- ===================== MANAGERS ===================== -->
+<section class="view mk" id="managers">
+  <div class="hero hero-light">
+    <div class="hero-copy">
+      <div class="kicker dark">For managers</div>
+      <h1 class="hero-h">Lend with control. Borrow in days.</h1>
+      <p class="hero-sub">Every manager is on one side of the volume cycle at any given time. Talent Exchange helps on both sides: recover the cost of idle hours when you're slow, and get trained help fast when you're slammed.</p>
+      <div class="seg"><a href="#mgr-lend" onclick="event.preventDefault();document.getElementById('mgr-lend').scrollIntoView({behavior:'smooth'})">I have spare capacity</a><a href="#mgr-borrow" onclick="event.preventDefault();document.getElementById('mgr-borrow').scrollIntoView({behavior:'smooth'})">I need help now</a></div>
+    </div>
+    <div class="vs-card">
+      <h3>Staffing a 3-month surge</h3>
+      <div class="vs-row head"><span></span><b>New hire</b><b class="win">Borrowed colleague</b></div>
+      <div class="vs-row"><span>Productive from</span><b>6–10 weeks</b><b class="win">2–5 days</b></div>
+      <div class="vs-row"><span>Recruiting &amp; onboarding</span><b>~$9K</b><b class="win">$0</b></div>
+      <div class="vs-row"><span>Knows our systems</span><b>After training</b><b class="win">Already</b></div>
+      <div class="vs-row"><span>Cost per 1,000 hrs</span><b>~$66K</b><b class="win">~$33K</b></div>
+      <div class="vs-row"><span>When the surge ends</span><b>Idle or severance</b><b class="win">Goes home</b></div>
+      <p class="fineprint">Illustrative; see the executive page for the cost build.</p>
+    </div>
+  </div>
+
+  <div class="mk-sec two-col" id="mgr-lend">
+    <div class="side-tag lend">When you're slow<br><b>Lend</b></div>
+    <div>
+      <h2 class="mk-h">Keep your team through the trough</h2>
+      <p class="mk-lead">Volume dips, but cutting means losing trained people you'll need again in six months. Lending keeps them productive and pays your cost center back.</p>
+      <div class="grid g3 mk-cards">
+        <div class="mk-card sm"><i data-ic="dollar"></i><h3>Recover the cost</h3><p>Your cost center is credited the same % of salary as the % of time lent, every month.</p></div>
+        <div class="mk-card sm"><i data-ic="sliders"></i><h3>Full control</h3><p>You set the cap and end date, confirm every request, and can recall people when your volume returns.</p></div>
+        <div class="mk-card sm"><i data-ic="shield"></i><h3>No poaching</h3><p>Borrowers sign a no-poach agreement. Permanent moves only happen when the employee opts in and you approve.</p></div>
+        <div class="mk-card sm"><i data-ic="users"></i><h3>Keep the team intact</h3><p>No layoff-and-rehire cycle. The people who know your clients are still there when the market turns.</p></div>
+        <div class="mk-card sm"><i data-ic="zap"></i><h3>They come back stronger</h3><p>New systems, deal types and practices, verified by the borrowing manager.</p></div>
+        <div class="mk-card sm"><i data-ic="calendar"></i><h3>Light admin</h3><p>One approval, then a one-click re-approval every 90 days. Reminders arrive in Teams and Outlook.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mk-sec two-col" id="mgr-borrow">
+    <div class="side-tag borrow">When you're slammed<br><b>Borrow</b></div>
+    <div>
+      <h2 class="mk-h">Help in days, not a req in months</h2>
+      <p class="mk-lead">A portfolio deal lands, closings stack up at month-end, or half the team takes PTO in December. Search the company for people who already know the work.</p>
+      <div class="grid g3 mk-cards">
+        <div class="mk-card sm"><i data-ic="search"></i><h3>Search precisely</h3><p>By skill, system (Ignite, ClarityFirst, FAST, Endpoint, Simplifile), property and transaction type, time zone, license and pay.</p></div>
+        <div class="mk-card sm"><i data-ic="check"></i><h3>Already onboarded</h3><p>Background-checked, trained on our systems, compliance and policies. Productive in days.</p></div>
+        <div class="mk-card sm"><i data-ic="dollar"></i><h3>Pay only for what you use</h3><p>Salary × % borrowed. No agency markup, recruiting fee or severance.</p></div>
+        <div class="mk-card sm"><i data-ic="calendar"></i><h3>Right-size the length</h3><p>PTO coverage (1–3 weeks), seasonal surge (1–3 months), or a customer or project surge (3–6 months).</p></div>
+        <div class="mk-card sm"><i data-ic="award"></i><h3>Verified track record</h3><p>See skills other managers have verified before you borrow.</p></div>
+        <div class="mk-card sm"><i data-ic="lock"></i><h3>Who can search</h3><p>Area managers and above, and HR. Team supervisors send needs through their area manager.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mk-sec split">
+    <div>
+      <div class="kicker dark">Your commitments as a borrower</div>
+      <h2 class="mk-h">Fair play keeps lenders lending</h2>
+      <ul class="ticks">
+        <li><b>No poaching</b> during the engagement or for 6 months after, unless the employee has opted in to a permanent move. <em>Window to be set by HR.</em></li>
+        <li><b>Respect the cap</b>, the time windows and the employee's time zone.</li>
+        <li><b>Keep the home supervisor informed</b>, and release the person early if their team needs them back.</li>
+        <li><b>Verify skills at the end.</b> It takes two minutes and builds the employee's record.</li>
+      </ul>
+    </div>
+    <div class="faq">
+      <h3>Manager questions</h3>
+      <details><summary>What if my volume comes back mid-engagement?</summary><p>Recall them. The demo design gives the borrower notice, and the home team always has first call.</p></details>
+      <details><summary>Who manages the work day to day?</summary><p>The borrowing manager directs the work. The home supervisor stays the person's manager for HR purposes.</p></details>
+      <details><summary>How does the money move?</summary><p>Monthly: salary × % borrowed, from the borrowing cost center to the lending cost center. <em>Finance to confirm the mechanics.</em></p></details>
+      <details><summary>What about system access and licensing?</summary><p>Access is provisioned per engagement. Licensed work is checked against the employee's licenses before it starts. <em>IT and Compliance own these checks.</em></p></details>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div><h2>Try both sides</h2><p>Approve a request as a supervisor, then search and borrow as an area manager.</p></div>
+    <div class="hero-cta"><button class="btn btn-lg" onclick="go('supervisor')">Approve as a supervisor</button><button class="btn btn-lg btn-ghost2" onclick="go('ops')">Search as a manager</button></div>
+  </div>
+</section>
+
+<!-- ===================== EXECUTIVES ===================== -->
+<section class="view mk" id="executives">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="kicker">For P&amp;L owners</div>
+      <h1 class="hero-h">Flex capacity without adding headcount.</h1>
+      <p class="hero-sub">Talent Exchange turns idle payroll in one unit into productive capacity in another. The cost to the borrowing unit is about half that of a new hire, and the net cost to the enterprise is roughly zero, because the salary is already being paid.</p>
+      <div class="hero-cta"><a class="btn btn-lg" href="#roi" onclick="event.preventDefault();document.getElementById('roi').scrollIntoView({behavior:'smooth'})">Model the savings</a><button class="btn btn-lg btn-outline" onclick="go('dash')">See the program dashboard</button></div>
+    </div>
+    <div class="pl-card">
+      <h3>Who pays what, per 1,000 surge hours</h3>
+      <div class="pl-row"><span>Borrowing unit</span><div class="pl-bar"><i style="width:50%"></i></div><b>~$33K vs ~$66K</b></div>
+      <div class="pl-row"><span>Lending unit</span><div class="pl-bar"><i class="g" style="width:50%"></i></div><b>~$33K recovered</b></div>
+      <div class="pl-row"><span>Enterprise</span><div class="pl-bar"><i class="z" style="width:3%"></i></div><b>≈ $0 net new</b></div>
+      <p>Compared with a new hire, the enterprise avoids ~$66K of new cost for every 1,000 hours covered.</p>
+    </div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">The P&amp;L logic</div>
+    <h2 class="mk-h">Cost moves inside the company instead of leaving it</h2>
+    <div class="grid g3 mk-cards">
+      <div class="mk-card"><i data-ic="trend"></i><h3>Borrowing unit</h3><p>Pays salary × % borrowed, about $33/hr on a $68K salary, compared with about $66/hr all-in for a new hire. No recruiting, ramp-up or exit cost.</p></div>
+      <div class="mk-card"><i data-ic="dollar"></i><h3>Lending unit</h3><p>Is credited the same salary share for hours it was paying for anyway. Margin improves in exactly the quarters it's under pressure.</p></div>
+      <div class="mk-card"><i data-ic="layers"></i><h3>Enterprise</h3><p>Net zero between units, so the external cost of the hire, its ramp-up and its exit is avoided. Benefits stay with the lending unit; Finance can add a load factor.</p></div>
+    </div>
+  </div>
+
+  <div class="mk-sec roi" id="roi">
+    <div class="kicker dark">ROI model</div>
+    <h2 class="mk-h">Model it for your organization</h2>
+    <p class="mk-lead">Move the sliders. The defaults are the pilot assumptions from the briefing deck.</p>
+    <div class="roi-grid">
+      <div class="roi-in">
+        <label>Participants with approved availability <output id="o_part"></output></label><input type="range" id="r_part" min="25" max="1000" step="25" value="150">
+        <label>Average % of week lent <output id="o_pct"></output></label><input type="range" id="r_pct" min="10" max="50" step="5" value="25">
+        <label>Share of lent hours actually used <output id="o_use"></output></label><input type="range" id="r_use" min="20" max="100" step="5" value="60">
+        <label>Average salary of participants <output id="o_sal"></output></label><input type="range" id="r_sal" min="40000" max="120000" step="2000" value="68000">
+        <label>New-hire cost per 1,000 surge hours <output id="o_nh"></output></label><input type="range" id="r_nh" min="40000" max="100000" step="1000" value="66000">
+        <p class="fineprint">Assumes 48 working weeks and 40-hour weeks. New-hire cost includes 30% benefits load, ramp-up, recruiting, onboarding and exit; see the deck for the build.</p>
+      </div>
+      <div class="roi-out">
+        <div class="roi-big"><span>New cost avoided per year</span><b id="x_save">—</b><em>vs. hiring for the same hours</em></div>
+        <div class="roi-kpis">
+          <div><b id="x_hrs">—</b><span>surge hours covered / yr</span></div>
+          <div><b id="x_fte">—</b><span>full-time equivalents</span></div>
+          <div><b id="x_req">—</b><span>new-hire reqs avoided*</span></div>
+          <div><b id="x_chg">—</b><span>salary moved between units</span></div>
+        </div>
+        <div class="roi-bars">
+          <div><span>Hiring for the same hours</span><div class="pl-bar"><i id="b_hire" style="width:100%"></i></div><b id="x_hire">—</b></div>
+          <div><span>Borrowing (paid by borrowing units)</span><div class="pl-bar"><i id="b_borrow" style="width:50%"></i></div><b id="x_borrow">—</b></div>
+          <div><span>Net new cost to the enterprise</span><div class="pl-bar"><i class="z" style="width:2%"></i></div><b>≈ $0</b></div>
+        </div>
+        <p class="fineprint">*Counting one req per ~1,000 surge hours. All figures illustrative; replace with Finance and Talent Acquisition actuals.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">Strategic upside</div>
+    <h2 class="mk-h">More than a cost lever</h2>
+    <div class="grid g4 mk-cards">
+      <div class="mk-card sm"><i data-ic="shield"></i><h3>Through-the-cycle resilience</h3><p>Fewer layoff-and-rehire swings when rates move. Know-how stays in the building.</p></div>
+      <div class="mk-card sm"><i data-ic="users"></i><h3>Retention</h3><p>Internal mobility and growth are among the top reasons people stay. Slow-team employees get a path.</p></div>
+      <div class="mk-card sm"><i data-ic="chart"></i><h3>A live skills inventory</h3><p>Who knows which systems, where and at what cost. Gaps show where to train next.</p></div>
+      <div class="mk-card sm"><i data-ic="layers"></i><h3>One company</h3><p>Best practices travel with people across brands, divisions and regions.</p></div>
+    </div>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">Risk and governance</div>
+    <h2 class="mk-h">Known questions, with owners</h2>
+    <div class="tbl-wrap"><table class="gov">
+      <thead><tr><th>Question</th><th>Proposed approach</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Wage and hour (non-exempt staff)</td><td>Borrowed hours come out of the normal schedule and are tracked; overtime rules apply</td><td>HR · Legal*</td></tr>
+        <tr><td>State licensing for title and escrow work</td><td>License fields on profiles; checked before licensed work starts</td><td>Compliance · Legal*</td></tr>
+        <tr><td>Pay visibility</td><td>Restricted to area managers and above, and HR; pay bands as an alternative</td><td>HR*</td></tr>
+        <tr><td>Poaching</td><td>No-poach agreement on every request; permanent moves are opt-in</td><td>HR*</td></tr>
+        <tr><td>Systems and data access</td><td>Provisioned per engagement; removed at the end</td><td>IT · Security</td></tr>
+        <tr><td>Chargeback mechanics</td><td>Salary × % borrowed, monthly journal entry between cost centers</td><td>Finance</td></tr>
+        <tr><td>Manager adoption</td><td>Cost credit, full control and no-poach protection for lenders</td><td>Operations leadership</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fineprint">*Requires review by HR policy and employment counsel before launch.</p>
+  </div>
+
+  <div class="mk-sec">
+    <div class="kicker dark">The ask</div>
+    <h2 class="mk-h">A 90-day pilot</h2>
+    <div class="pilot">
+      <div><span>Weeks 0–2</span><b>Set up</b>Pick 2–3 business units. HR and Legal sign off on policy; IT connects SSO and HR-system roles; Finance sets the journal entry.</div>
+      <div><span>Weeks 3–10</span><b>Run</b>About 150 volunteers list availability; area managers borrow for real surges, with weekly check-ins.</div>
+      <div><span>Weeks 11–13</span><b>Measure and decide</b>Hours shared, external cost avoided, time to staff, participant retention and manager satisfaction. Then scale, adjust or stop.</div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div><h2>See the enterprise view</h2><p>The program dashboard shows hours, savings and the skills most in demand.</p></div>
+    <div class="hero-cta"><button class="btn btn-lg" onclick="go('dash')">Open the dashboard</button><button class="btn btn-lg btn-ghost2" onclick="go('feedback')">Share feedback</button></div>
+  </div>
+</section>
+
+<!-- ===================== DEMO START ===================== -->
+<section class="view" id="demo">
+  <h1>Live demo</h1>
+  <p class="sub">Each tab is a different person's view. Walk through them in order, or jump around. Everything resets when you reload.</p>
+  <div class="tour">
+    <button onclick="go('profile')"><span>1</span><b>My Profile</b>Maria, a title examiner, builds her profile and sends it to her supervisor.</button>
+    <button onclick="go('supervisor')"><span>2</span><b>Supervisor Approvals</b>David approves Maria's cap and end date. Try the 90-day re-approval preview.</button>
+    <button onclick="go('ops')"><span>3</span><b>Find Talent</b>Sign in as a team supervisor (blocked), then as an area manager, and borrow someone.</button>
+    <button onclick="go('eng')"><span>4</span><b>Engagements</b>Track active borrowings, then complete one and verify the skills used.</button>
+    <button onclick="go('dash')"><span>5</span><b>Program Dashboard</b>The enterprise view for HR and Finance.</button>
   </div>
   <div class="grid g2" style="margin-top:18px">
     <div class="card">
-      <h2>Try the demo flow</h2>
-      <p class="mini">Each tab is a different user's view. Walk through them in order:</p>
-      <ol class="mini" style="padding-left:18px;margin:8px 0 16px">
-        <li><b>My Profile</b> — Maria completes her profile and submits it.</li>
-        <li><b>Supervisor Approvals</b> — her supervisor approves with a cap and end date.</li>
-        <li><b>Find Talent</b> — sign in through SSO. Try a team supervisor (blocked) and then an area manager (can search). Maria now appears in results.</li>
-        <li><b>Program Dashboard</b> — the enterprise view of hours shared and cost avoided.</li>
-      </ol>
-      <button class="btn" onclick="go('profile')">Start as an employee</button>
+      <h2>People in this demo</h2>
+      <ul class="mini" style="padding-left:18px;margin:0">
+        <li><b>Maria Russo</b>: Title Examiner II, Residential Title Production, NYC. The employee.</li>
+        <li><b>David Chen</b>: Maria's supervisor. Approves availability.</li>
+        <li><b>Priya Natarajan</b>: Area Manager, Commercial Services NYC. Searches and borrows.</li>
+        <li><b>Kevin Walsh</b>: Team Supervisor in Albany. Can't search; routes needs to his area manager.</li>
+        <li><b>About 40 colleagues</b> across 6 regions and 4 time zones, all fictional.</li>
+      </ul>
     </div>
     <div class="card">
-      <h2>Guardrails built in</h2>
+      <h2>Guardrails in this demo</h2>
       <ul class="mini" style="padding-left:18px;margin:0">
         <li>No listing goes live without the direct supervisor's approval.</li>
-        <li>Supervisor sets a hard cap on % of time and an expiry date; can revoke any time.</li>
-        <li>Borrowing managers agree not to recruit the people they borrow, during the engagement or for 6 months after. Employees who want a permanent move can say so on their profile, with their supervisor's approval.</li>
-        <li>Employees reconfirm availability every 30 days; supervisors re-approve every 90 days. Lapsed listings drop out of search.</li>
-        <li>Home team keeps first call on the employee's time.</li>
-        <li>Profiles are visible only to area, state and region managers, senior executives and HR, through SSO. Peers and line supervisors cannot browse them.</li>
-        <li>Chargeback = employee's salary × % of time borrowed, moved from the borrowing cost center to the home cost center.</li>
-        <li>Access, licensing and data rules checked before assignment starts.</li>
+        <li>Supervisors set a hard cap and an expiry date, and can revoke at any time.</li>
+        <li>Employees reconfirm every 30 days; supervisors re-approve every 90 days.</li>
+        <li>Only area managers and above, and HR, can search, through SSO.</li>
+        <li>Every borrow request requires a no-poach agreement.</li>
+        <li>Chargeback is salary × % borrowed, credited to the home cost center.</li>
       </ul>
     </div>
   </div>
 </section>
+
+<!-- ===================== ENGAGEMENTS ===================== -->
+<section class="view" id="eng">
+  <h1>Engagements</h1>
+  <p class="sub">Viewing as Priya Natarajan, Area Manager, Commercial Services NYC. These are the people your team is borrowing right now.</p>
+  <div class="grid g4" id="engStats"></div>
+  <h2 style="margin-top:22px">Active</h2>
+  <div id="engActive"></div>
+  <h2 style="margin-top:22px">Completed</h2>
+  <div id="engDone"></div>
+  <p class="note">When you complete an engagement, the employee and their home supervisor are notified, system access is removed, and the skills you verify are added to the employee's record.</p>
+</section>
+
 
 <!-- PROFILE -->
 <section class="view" id="profile">
@@ -304,6 +886,14 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
           <button class="btn" id="submitBtn" onclick="submitProfile()">Send to David Chen for approval</button>
         </div>
       </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>Check-ins</h2>
+        <p class="mini" style="margin:-4px 0 8px">Listings stay current automatically. Status: <b id="ckStatus">Not live yet</b></p>
+        <div class="checkin-row"><span>You reconfirm your availability</span><b id="ck30">Every 30 days</b></div>
+        <div class="checkin-row"><span>Your supervisor re-approves</span><b id="ck90">Every 90 days</b></div>
+        <div class="actions" style="justify-content:flex-start"><button class="btn ghost" onclick="preview30()">Preview the 30-day reminder</button></div>
+      </div>
     </div>
   </div>
 </section>
@@ -326,7 +916,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
           <li>Once you approve, the profile becomes searchable by area managers and above (and HR) through SSO, up to the cap you set.</li>
           <li>Each specific assignment still comes to you for a one-click confirm.</li>
           <li>You can pause or revoke availability if your own volume returns.</li>
-          <li>You'll be asked to re-approve every 90 days, or the listing expires.</li>
+          <li>You'll be asked to re-approve every 90 days, or the listing expires. Andre's is due soon: click <b>Due in 9 days</b> to preview the reminder.</li>
         </ul>
       </div>
     </div>
@@ -412,6 +1002,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     <div class="stat"><b>11</b><span>New-hire requisitions avoided</span></div>
     <div class="stat"><b>$710K</b><span>Hiring cost avoided this quarter (vs. new hires)</span></div>
   </div>
+  <div class="grid g4" style="margin-top:18px">
+    <div class="stat"><b>3.1 days</b><span>Average time to staff (new hire: 6–10 weeks)</span></div>
+    <div class="stat"><b>212</b><span>Skills verified by borrowing managers</span></div>
+    <div class="stat"><b>96%</b><span>Listings current under 30/90-day check-ins</span></div>
+    <div class="stat"><b>4.6 / 5</b><span>Borrowing managers who would borrow again</span></div>
+  </div>
   <div class="grid g2" style="margin-top:18px">
     <div class="card">
       <h2>Hours shared by receiving area</h2>
@@ -464,6 +1060,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 </section>
 </main>
 <footer>Talent Exchange · Concept demonstration · Sample people and figures</footer>
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true"><div class="modal"><div class="modal-h"><b id="modalT"></b><button onclick="closeModal()" aria-label="Close">×</button></div><div class="modal-b" id="modalB"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -553,10 +1150,7 @@ const USERS=[
 let session=null;
 const $=id=>document.getElementById(id);
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2600)}
-function go(v){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.view===v));document.querySelectorAll(".view").forEach(s=>s.classList.toggle("active",s.id===v));
-  const roles={home:["Employee","MR"],profile:["Employee — Maria Russo","MR"],supervisor:["Supervisor — David Chen","DC"],ops:[session?session.name+" ("+(session.hr?"HR":LEVELS[session.level])+")":"Not signed in",session?session.name.split(" ").map(x=>x[0]).join(""):"—"],dash:["HR Program Lead","HR"],feedback:["Presentation guest","👋"]};
-  $("roleLabel").textContent="Viewing as: "+roles[v][0];$("avatarInit").textContent=roles[v][1];window.scrollTo(0,0)}
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.view));
+
 
 function chips(el,list,set,cb){el.innerHTML="";list.forEach(x=>{const c=document.createElement("button");c.type="button";c.className="chip"+(set.has(x)?" on":"");c.textContent=x;c.onclick=()=>{set.has(x)?set.delete(x):set.add(x);c.classList.toggle("on");cb&&cb()};el.appendChild(c)})}
 function renderSkills(){const el=$("skillList");el.innerHTML="";state.skills.forEach((s,i)=>{const r=document.createElement("div");r.className="skill-row";r.innerHTML=`<span>${s[0]}</span><div class="lvl">${[1,2,3].map(n=>`<button class="${s[1]===n?"on":""}" onclick="setLvl(${i},${n})">${n}</button>`).join(" ")}</div><button class="btn ghost" style="padding:2px 8px" onclick="rmSkill(${i})" aria-label="Remove">×</button>`;el.appendChild(r)});updSummary()}
@@ -630,6 +1224,7 @@ function runSearch(){if(!session)return;const q=$("q").value.trim().toLowerCase(
     <div class="info"><b>${p.name}</b> <span class="mini">· ${p.role}</span><div class="mini">${p.team} · 📍 ${p.area}, ${p.state} · ${p.region} · ✈ ${TRAVEL[p.travel||0]}</div>
       <div class="mini">Approved for up to <b>${p.pct}%</b> (≈${Math.round(p.pct*.4)} hrs/wk) · ${p.from} – ${p.to} · supervisor signed off</div>
       ${p.perm?`<div style="margin-top:6px"><span class="badge b-ok">Open to a permanent move${p.permNote?": "+p.permNote:""} · supervisor approved</span></div>`:""}
+      ${vLine(p)}
       <div class="mini">Open to: <span style="font-weight:700;color:var(--ink)">${p.eng.map(engLabel).join(" · ")}</span> · longest engagement ${wkLabel(p.maxWk)}</div>
       <div class="mini">Experience: <span style="font-weight:700;color:var(--ink)">${(p.seg||[]).join(" · ")}</span> — ${(p.txn||[]).join(", ")}</div>
       <div class="mini">Usually free (<span style="font-weight:700;color:var(--ink)">${p.tz}</span>): ${slotTxt(p.slots)}</div>
@@ -644,7 +1239,7 @@ function runSearch(){if(!session)return;const q=$("q").value.trim().toLowerCase(
       <div class="row"><div><label>Start</label><input type="date" value="2026-11-09"></div><div><label>End</label><input type="date" value="2026-12-31"></div></div>
       <p class="mini" style="margin:10px 0 0">Chargeback: <b id="rc-${p.id}">${fmt$(chargeMo(p))} / month</b>, credited to ${p.team}, ${p.area}.</p>
       <div class="attest"><input type="checkbox" id="np-${p.id}"><span><b>No-poach agreement:</b> I won't recruit ${p.name.split(" ")[0]} for a permanent role during this engagement or for 6 months after${p.perm?", except through the permanent-move option they've posted":""}.</span></div>
-      <div class="actions"><button class="btn" onclick="if(!$('np-${p.id}').checked){toast('Please accept the no-poach agreement');return}this.disabled=true;this.textContent='Request sent';toast('Request sent to ${p.name} and their supervisor to confirm')">Send request</button></div></div>
+      <div class="actions"><button class="btn" onclick="if(!$('np-${p.id}').checked){toast('Please accept the no-poach agreement');return}this.disabled=true;this.textContent='Request sent';startEngagement('${p.id}');toast('Request sent to ${p.name} and their supervisor to confirm')">Send request</button></div></div>
   </div>`).join(""):'<div class="card empty">No approved colleagues match. Try removing a filter.</div>'}
 
 function renderDash(){const flows=[["Commercial Services — NYC",3400],["Closing & Settlement — Northeast",2500],["Policy Production — Central",2150],["Default / REO services",1550],["Agency Operations",1200]];const mx=3400;
@@ -660,6 +1255,150 @@ function fbText(){return `Name: ${$("fbName").value||"(not given)"}\nArea: ${$("
 function sendFeedback(){location.href="mailto:"+FB_TO.join(",")+"?subject="+encodeURIComponent("Talent Exchange demo feedback")+"&body="+encodeURIComponent(fbText())}
 function copyFeedback(){const t="To: "+FB_TO.join(", ")+"\nSubject: Talent Exchange demo feedback\n\n"+fbText();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied — paste into an email"),()=>{prompt("Copy this text:",t)})}
 function renderRate(){$("fbRate").innerHTML="";["1 — not useful","2","3","4 — very useful","5 — would use now"].forEach(x=>{const c=document.createElement("button");c.type="button";c.className="chip"+(fbRate.has(x)?" on":"");c.textContent=x;c.onclick=()=>{fbRate.clear();fbRate.add(x);renderRate()};$("fbRate").appendChild(c)})}renderRate();
+
+/* ================= v4 additions ================= */
+/* ---- icons ---- */
+const IC={clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+alert:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+layers:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+check:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+lock:'<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+dollar:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+award:'<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+trend:'<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+repeat:'<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+chart:'<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>',
+eye:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+door:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+compass:'<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+sliders:'<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>',
+calendar:'<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+search:'<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>'};
+document.querySelectorAll("i[data-ic]").forEach(i=>{i.outerHTML=`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[i.dataset.ic]||""}</svg>`});
+
+/* ---- routing ---- */
+const DEMO_VIEWS=new Set(["demo","profile","supervisor","ops","eng","dash"]);
+function roleFor(v){return {demo:["Choose a view","▶"],profile:["Employee — Maria Russo","MR"],supervisor:["Supervisor — David Chen","DC"],
+  ops:[session?session.name+" ("+(session.hr?"HR":LEVELS[session.level])+")":"Not signed in",session?session.name.split(" ").map(x=>x[0]).join(""):"—"],
+  eng:["Area Manager — Priya Natarajan","PN"],dash:["HR Program Lead","HR"],feedback:["Presentation guest","👋"]}[v]||null}
+function go(v,fromHistory){
+  if(!document.getElementById(v)||!document.getElementById(v).classList.contains("view"))v="home";
+  document.querySelectorAll(".view").forEach(s=>s.classList.toggle("active",s.id===v));
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.view===v||(b.dataset.view==="demo"&&DEMO_VIEWS.has(v))));
+  document.querySelectorAll(".stab").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  $("subnav").classList.toggle("show",DEMO_VIEWS.has(v));
+  const r=roleFor(v);$("userBox").classList.toggle("hidden",!r);if(r){$("roleLabel").textContent="Viewing as: "+r[0];$("avatarInit").textContent=r[1]}
+  if(v==="eng")renderEng();if(v==="executives")calcROI();
+  if(!fromHistory&&location.hash.slice(1)!==v){try{history.pushState(null,"","#"+v)}catch(e){}}
+  window.scrollTo(0,0)}
+document.querySelectorAll(".tab,.stab").forEach(b=>b.onclick=()=>go(b.dataset.view));
+window.addEventListener("popstate",()=>go(location.hash.slice(1)||"home",true));
+
+/* ---- modal ---- */
+function openModal(title,html){$("modalT").textContent=title;$("modalB").innerHTML=html;$("modal").classList.add("open")}
+function closeModal(){$("modal").classList.remove("open")}
+$("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+/* ---- ROI model ---- */
+const money=n=>n>=1e6?"$"+(n/1e6).toFixed(n>=1e7?1:2)+"M":"$"+Math.round(n/1e3).toLocaleString()+"K";
+function calcROI(){const g=id=>+$(id).value;const part=g("r_part"),pct=g("r_pct"),use=g("r_use"),sal=g("r_sal"),nh=g("r_nh");
+  $("o_part").textContent=part.toLocaleString();$("o_pct").textContent=pct+"%";$("o_use").textContent=use+"%";$("o_sal").textContent="$"+(sal/1000)+"K";$("o_nh").textContent="$"+(nh/1000)+"K";
+  const hrs=part*pct/100*40*48*use/100, hire=hrs/1000*nh, borrow=hrs*sal/2080;
+  $("x_hrs").textContent=Math.round(hrs).toLocaleString();$("x_fte").textContent=(hrs/2080).toFixed(1);$("x_req").textContent=Math.round(hrs/1000).toLocaleString();
+  $("x_chg").textContent=money(borrow);$("x_save").textContent=money(hire);$("x_hire").textContent=money(hire);$("x_borrow").textContent=money(borrow);
+  $("b_borrow").style.width=Math.max(2,Math.min(100,borrow/hire*100))+"%"}
+["r_part","r_pct","r_use","r_sal","r_nh"].forEach(i=>$(i).oninput=calcROI);calcROI();
+
+/* ---- verified skills (seed) ---- */
+const VSEED={sl:[["Closing / settlement support","Priya N."],["Endpoint","Priya N."]],aw:[["Commercial title exam","Marcus B."],["Ignite","Marcus B."]],kb:[["Underwriting review","Rachel K."]],rm:[["Residential title exam","Diane F."]],pc:[["ClarityFirst","Marcus B."]]};
+people.forEach(p=>{p.verified=(VSEED[p.id]||[]).map(([s,by])=>({s,by}))});
+["g2","g5","g9","g12","g17","g23","g30"].forEach((id,i)=>{const p=people.find(x=>x.id===id);if(p&&p.skills[0])p.verified.push({s:p.skills[0],by:["Rachel K.","Marcus B.","Elena R.","Priya N."][i%4]})});
+const vLine=p=>(p.verified&&p.verified.length)?`<div class="verified">${p.verified.slice(0,4).map(v=>`<span class="vbadge" title="Verified by ${v.by}">✓ ${v.s}</span>`).join("")}<span class="mini" style="align-self:center">verified by managers who borrowed ${p.name.split(" ")[0]}</span></div>`:"";
+
+/* ---- engagements ---- */
+const TODAY=new Date();
+const iso=d=>d.toISOString().slice(0,10);
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const fmtD=s=>new Date(s+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
+const ENGS=[
+  {id:"e1",pid:"aw",type:"Customer / portfolio / project surge",pct:25,start:iso(addD(TODAY,-19)),end:iso(addD(TODAY,70)),status:"active",note:"Portfolio refinance, 140 properties"},
+  {id:"e2",pid:"pc",type:"Seasonal surge",pct:30,start:iso(addD(TODAY,-5)),end:iso(addD(TODAY,98)),status:"active",note:"Year-end closing volume"},
+  {id:"e3",pid:"g14",type:"PTO coverage",pct:20,start:iso(addD(TODAY,-9)),end:iso(addD(TODAY,2)),status:"active",note:"Covering two examiners on vacation"},
+  {id:"e0",pid:"sl",type:"PTO coverage",pct:20,start:iso(addD(TODAY,-60)),end:iso(addD(TODAY,-42)),status:"done",rating:5}
+].filter(e=>people.find(p=>p.id===e.pid));
+const P=id=>people.find(p=>p.id===id);
+function engCountUpd(){const n=ENGS.filter(e=>e.status!=="done").length;$("engCount").textContent=n}
+function renderEng(){const act=ENGS.filter(e=>e.status!=="done"),done=ENGS.filter(e=>e.status==="done");
+  const wk=act.reduce((a,e)=>a+Math.round(e.pct*.4),0), mo=act.reduce((a,e)=>a+P(e.pid).salary*e.pct/100/12,0);
+  $("engStats").innerHTML=`<div class="stat"><b>${act.length}</b><span>Active or requested engagements</span></div><div class="stat"><b>${wk}</b><span>Borrowed hours per week</span></div><div class="stat"><b>${fmt$(Math.round(mo/10)*10)}</b><span>Monthly chargeback to CC 4410</span></div><div class="stat"><b>3 days</b><span>Average time to staff</span></div>`;
+  $("engActive").innerHTML=act.length?act.map(e=>{const p=P(e.pid);const s=new Date(e.start),en=new Date(e.end),tot=Math.max(1,(en-s)/864e5),el=Math.min(tot,Math.max(0,(TODAY-s)/864e5));
+    const prog=Math.round(el/tot*100),wks=el/7,hrs=Math.round(wks*40*e.pct/100),chg=Math.round(p.salary*e.pct/100*el/365/10)*10,left=Math.ceil((en-TODAY)/864e5);
+    const req=e.status==="requested";
+    return `<div class="eng"><div class="eng-top"><div class="avatar">${p.name.split(" ").map(x=>x[0]).join("")}</div>
+      <div class="who"><b>${p.name}</b> <span class="mini">· ${p.role}, ${p.team} · ${p.area}, ${p.state} (${p.tz})</span>
+      <div class="mini">${e.type} · ${e.pct}% (≈${Math.round(e.pct*.4)} hrs/wk) · ${fmtD(e.start)} – ${fmtD(e.end)}${e.note?" · "+e.note:""}</div></div>
+      ${req?'<span class="badge b-pend">Awaiting confirmation</span>':left<=7?`<span class="badge b-pend">Ends in ${left} day${left===1?"":"s"}</span>`:'<span class="badge b-ok">Active</span>'}</div>
+      <div class="eng-prog"><div class="bar"><i style="width:${req?0:prog}%"></i></div></div>
+      <div class="eng-meta"><span>Hours to date <b>${req?0:hrs}</b></span><span>Chargeback to date <b>${fmt$(req?0:chg)}</b></span><span>Credited to <b>${p.team}</b></span><span>No-poach <b>signed</b></span></div>
+      ${req?"":`<div class="actions"><button class="btn ghost" onclick="extendEng('${e.id}')">Extend 4 weeks</button><button class="btn" onclick="completeEng('${e.id}')">Complete &amp; verify skills</button></div>`}</div>`}).join(""):'<div class="card empty">No active engagements. Borrow someone from Find Talent.</div>';
+  $("engDone").innerHTML=done.length?done.map(e=>{const p=P(e.pid);return `<div class="eng"><div class="eng-top"><div class="avatar">${p.name.split(" ").map(x=>x[0]).join("")}</div><div class="who"><b>${p.name}</b> <span class="mini">· ${p.role} · ${e.type} · ${fmtD(e.start)} – ${fmtD(e.end)}</span>
+    <div class="mini">Returned to ${p.team}${e.rating?" · Would borrow again: "+"★".repeat(e.rating)+"☆".repeat(5-e.rating):""}</div>${vLine(p)}</div><span class="badge b-blue">Completed</span></div></div>`}).join(""):'<div class="card empty">None yet.</div>';
+  engCountUpd()}
+function extendEng(id){const e=ENGS.find(x=>x.id===id);e.end=iso(addD(new Date(e.end+"T12:00:00"),28));renderEng();toast(`Extension request sent to ${P(e.pid).name} and their supervisor`)}
+function completeEng(id){const e=ENGS.find(x=>x.id===id),p=P(e.pid);const opts=[...p.skills,...p.sys.filter(s=>s!=="Excel / reporting")];
+  openModal("Complete engagement",`<p class="mini" style="margin-top:0">Confirm the skills <b>${p.name}</b> used on your team. They're added to ${p.name.split(" ")[0]}'s record, and their home supervisor is notified.</p>
+  <label>Skills and systems used</label><div class="chips" id="vChips">${opts.map((s,i)=>`<button type="button" class="chip${i<2?" on":""}" onclick="this.classList.toggle('on')">${s}</button>`).join("")}</div>
+  <label>Would you borrow ${p.name.split(" ")[0]} again?</label><select id="vRate"><option value="5">5 — absolutely</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1 — no</option></select>
+  <label>Note for ${p.name.split(" ")[0]} and their supervisor (optional)</label><textarea id="vNote" rows="2" placeholder="What went well, what they learned"></textarea>
+  <div class="attest"><input type="checkbox" checked disabled><span>System access granted for this engagement will be removed.</span></div>
+  <div class="actions"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn green" onclick="finishEng('${id}')">Complete &amp; verify</button></div>`)}
+function finishEng(id){const e=ENGS.find(x=>x.id===id),p=P(e.pid);const sk=[...document.querySelectorAll("#vChips .chip.on")].map(c=>c.textContent);
+  if(!sk.length){toast("Select at least one skill");return}
+  sk.forEach(s=>{if(!p.verified.some(v=>v.s===s))p.verified.unshift({s,by:"Priya N."})});
+  e.status="done";e.rating=+$("vRate").value;e.end=iso(TODAY);closeModal();renderEng();if(session)runSearch();
+  toast(`${p.name} is back with ${p.team}; ${sk.length} skill${sk.length>1?"s":""} verified`)}
+function startEngagement(pid){const f=$("rf-"+pid);const sel=f.querySelectorAll("select"),dts=f.querySelectorAll("input[type=date]");
+  const e={id:"e"+Date.now(),pid,pct:+sel[0].value,type:(sel[1].value||"").split(" (")[0],start:dts[0].value,end:dts[1].value,status:"requested"};
+  ENGS.unshift(e);engCountUpd();
+  setTimeout(()=>{e.status="active";engCountUpd();if($("eng").classList.contains("active"))renderEng();toast(`${P(pid).name} and their supervisor confirmed. See Engagements.`)},2200)}
+
+/* ---- check-ins: employee 30-day, supervisor 90-day ---- */
+function updCheckins(){const ok=state.myStatus==="approved";
+  $("ck30").textContent=ok?"Next: "+fmtD(iso(addD(TODAY,30))):"Every 30 days, once approved";
+  $("ck90").textContent=ok?"Next: "+fmtD(iso(addD(TODAY,90))):"Every 90 days, once approved";
+  $("ckStatus").textContent=state.paused?"Paused":ok?"Live in search":"Not live yet"}
+const _sms=setMyStatus;setMyStatus=function(){_sms();updCheckins()};
+function preview30(){const pct=+$("pct").value;
+  openModal("Preview: 30-day reminder",`<div class="notif"><div class="notif-src"><i></i>Teams · Talent Exchange · now</div><div class="notif-body">
+  <h4>Hi Maria, are you still available?</h4><p class="mini" style="margin:0 0 10px">Your Talent Exchange listing is due for its 30-day check. Please confirm it's still accurate so managers see current information.</p>
+  <dl class="kv"><dt>Capacity</dt><dd>${pct}% (≈${Math.round(pct*.4)} hrs/wk)</dd><dt>Usually free</dt><dd>${slotTxt([...state.slots])} (${$("pTz").value})</dd><dt>Through</dt><dd>${fmtD($("dTo").value)}</dd></dl>
+  <div class="actions" style="justify-content:flex-start"><button class="btn green" onclick="closeModal();state.paused=false;updCheckins();toast('Thanks. Your listing is confirmed for another 30 days.')">Yes, still available</button>
+  <button class="btn ghost" onclick="closeModal();go('profile');document.getElementById('pct').focus()">Update</button>
+  <button class="btn red" onclick="closeModal();state.paused=true;updCheckins();toast('Listing paused. Managers won\\'t see you until you resume.')">Pause listing</button></div>
+  <p class="note">If there's no reply within 7 days, the listing pauses automatically (proposed).</p></div></div>`)}
+const REAPPROVE={aw:9,mr:90};
+const _rq=renderQueue;renderQueue=function(){_rq();const t=$("teamTbl");if(!t)return;const th=t.parentElement.querySelector("thead tr");
+  if(th&&th.children.length===3)th.insertAdjacentHTML("beforeend","<th>Re-approval</th>");
+  const ids=people.filter(p=>["mr","jk","lt","aw"].includes(p.id));
+  [...t.rows].forEach((r,i)=>{const p=ids[i];if(!p)return;const d=REAPPROVE[p.id];
+    r.insertAdjacentHTML("beforeend",p.status==="approved"&&d?`<td>${d<=14?`<button class="btn" style="padding:3px 9px;font-size:12px" onclick="preview90('${p.id}')">Due in ${d} days</button>`:`<span class="mini">in ${d} days</span>`}</td>`:"<td class='mini'>—</td>")})};
+function preview90(id){const p=P(id),d=REAPPROVE[id],e=ENGS.find(x=>x.pid===id&&x.status!=="done");
+  openModal("Preview: 90-day re-approval",`<div class="notif"><div class="notif-src"><i></i>Outlook · Talent Exchange · to David Chen</div><div class="notif-body">
+  <h4>${p.name}'s listing expires in ${d} days</h4><p class="mini" style="margin:0 0 10px">Re-approve to keep ${p.name.split(" ")[0]} available to other teams, change the terms, or let the listing lapse.</p>
+  <dl class="kv"><dt>Approved cap</dt><dd>${p.pct}% (≈${Math.round(p.pct*.4)} hrs/wk)</dd><dt>Current work</dt><dd>${e?`${e.type}, Commercial Services NYC, until ${fmtD(e.end)}`:"Not currently borrowed"}</dd><dt>Credited to you</dt><dd>${fmt$(Math.round(p.salary*p.pct/100/12/10)*10)}/month while borrowed</dd></dl>
+  <div class="actions" style="justify-content:flex-start"><button class="btn green" onclick="REAPPROVE['${id}']=90;closeModal();renderQueue();toast('Re-approved for 90 days')">Re-approve for 90 days</button>
+  <button class="btn ghost" onclick="closeModal();toast('Opening terms (demo)')">Change terms</button>
+  <button class="btn red" onclick="closeModal();toast('Listing will lapse; any active engagement finishes as planned')">Let it lapse</button></div></div></div>`)}
+const _dec=decide;decide=function(id,ok){_dec(id,ok);if(ok&&id==="mr")REAPPROVE.mr=90;renderQueue()};
+
+/* ---- init ---- */
+renderQueue();updCheckins();engCountUpd();
+go(location.hash.slice(1)||"home",true);
 </script>
 </body>
 </html>
